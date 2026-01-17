@@ -57,10 +57,12 @@ export function Contact() {
                   <div>
                     <p className="text-xs text-muted-foreground uppercase">Email</p>
                     <a
-                      href="mailto:your.email@example.com"
+                      href="https://mail.google.com/mail/?view=cm&fs=1&to=johnandrewborabo@gmail.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-xs sm:text-sm text-foreground hover:text-primary transition-colors font-mono"
                     >
-                      your.email@example.com
+                      johnandrewborabo@gmail.com
                     </a>
                   </div>
                 </div>
@@ -74,12 +76,12 @@ export function Contact() {
                   <div>
                     <p className="text-xs text-muted-foreground uppercase">LinkedIn</p>
                     <a
-                      href="https://linkedin.com"
+                      href="https://www.linkedin.com/in/john-andrew-borabo-3533b3255/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-xs sm:text-sm text-foreground hover:text-secondary transition-colors font-mono"
                     >
-                      linkedin.com/in/yourname
+                      linkedin.com/in/john-andrew-borabo-3533b3255/
                     </a>
                   </div>
                 </div>
@@ -93,12 +95,12 @@ export function Contact() {
                   <div>
                     <p className="text-xs text-muted-foreground uppercase">GitHub</p>
                     <a
-                      href="https://github.com"
+                      href="https://github.com/lulli30"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-xs sm:text-sm text-foreground hover:text-accent transition-colors font-mono"
                     >
-                      github.com/yourusername
+                      github.com/lulli30
                     </a>
                   </div>
                 </div>
@@ -134,7 +136,7 @@ export function Contact() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="YOUR.EMAIL@EXAMPLE.COM"
+                  placeholder="johnandrewborabo@gmail.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
@@ -172,7 +174,7 @@ export function Contact() {
 
       <div className="max-w-7xl mx-auto mt-24 pt-8 border-t-2 border-primary/30 relative z-10">
         <p className="text-center text-muted-foreground text-xs uppercase tracking-wider font-mono">
-          © 2025 ARCADE PORTFOLIO // BUILT WITH NEXT.JS + TAILWINDCSS // GAME OVER? PRESS START
+          © 2025 John Andrew Borabo // BUILT WITH NEXT.JS + TAILWINDCSS // GAME OVER? PRESS START
         </p>
       </div>
     </section>

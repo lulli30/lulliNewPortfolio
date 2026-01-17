@@ -13,7 +13,6 @@ const pressStart = Press_Start_2P({
 export const metadata: Metadata = {
   title: "ARCADE PORTFOLIO - Player 1",
   description: "Retro arcade-themed developer portfolio with neon effects",
-  generator: "v0.app",
   icons: {
     icon: [
       {
