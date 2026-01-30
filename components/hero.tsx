@@ -10,15 +10,40 @@ export function Hero() {
 
   useEffect(() => {
     let index = 0
-    const interval = setInterval(() => {
-      if (index <= fullText.length) {
-        setDisplayText(fullText.slice(0, index))
-        index++
+    let direction: "forward" | "backward" = "forward"
+    const typeSpeed = 100
+    const holdAtEnd = 2000
+    const holdAtStart = 800
+    let holdTimer: ReturnType<typeof setTimeout> | null = null
+
+    const tick = () => {
+      if (direction === "forward") {
+        if (index <= fullText.length) {
+          setDisplayText(fullText.slice(0, index))
+          index++
+        } else {
+          direction = "backward"
+          holdTimer = setTimeout(tick, holdAtEnd)
+          return
+        }
       } else {
-        clearInterval(interval)
+        if (index > 0) {
+          index--
+          setDisplayText(fullText.slice(0, index))
+        } else {
+          direction = "forward"
+          holdTimer = setTimeout(tick, holdAtStart)
+          return
+        }
       }
-    }, 100)
-    return () => clearInterval(interval)
+      holdTimer = setTimeout(tick, typeSpeed)
+    }
+
+    holdTimer = setTimeout(tick, typeSpeed)
+
+    return () => {
+      if (holdTimer) clearTimeout(holdTimer)
+    }
   }, [])
 
   const scrollToAbout = () => {
@@ -108,7 +133,7 @@ export function Hero() {
 
           <div className="flex items-center gap-6 pt-4">
             <a
-              href="https://github.com"
+              href="https://github.com/lulli30"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-all hover:scale-125 transform"
@@ -116,7 +141,7 @@ export function Hero() {
               <Github className="w-6 h-6" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/john-andrew-borabo-3533b3255/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-all hover:scale-125 transform"
@@ -124,7 +149,7 @@ export function Hero() {
               <Linkedin className="w-6 h-6" />
             </a>
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:johnandrewborabo@gmail.com"
               className="text-muted-foreground hover:text-primary transition-all hover:scale-125 transform"
             >
               <Mail className="w-6 h-6" />
