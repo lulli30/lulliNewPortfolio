@@ -59,7 +59,7 @@ export function About() {
 
           <div className="space-y-6 animate__animated animate__fadeInRight">
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed text-justify sm:text-left">
-              LEVELING UP AS A COMPUTER SCIENCE STUDENT AND AI DEVELOPER WITH A STRONG FOCUS ON
+              LEVELING UP AS A COMPUTER SCIENCE STUDENT AND FREELANCE DEVELOPER WITH A STRONG FOCUS ON
               NATURAL LANGUAGE PROCESSING, CYBERSECURITY, AND INTELLIGENT APPLICATIONS.
               I ENJOY TURNING COMPLEX IDEAS AND RESEARCH INTO PRACTICAL, USER-FOCUSED SYSTEMS.
 

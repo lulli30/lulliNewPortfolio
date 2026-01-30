@@ -100,7 +100,7 @@ export function Hero() {
               JOHN ANDREW <span className="text-primary neon-text block mt-2">BORABO</span>
               
             </h1>
-            <p className="text-sm sm:text-base md:text-xl text-secondary uppercase tracking-wide">▸ AI DEV & CS RESEARCHER ◂
+            <p className="text-sm sm:text-base md:text-xl text-secondary uppercase tracking-wide">▸ FREELANCE DEVELOPER & CS STUDENT ◂
             </p>
           </div>
 
@@ -149,7 +149,7 @@ export function Hero() {
               <Linkedin className="w-6 h-6" />
             </a>
             <a
-              href="mailto:johnandrewborabo@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=johnandrewborabo@gmail.com"
               className="text-muted-foreground hover:text-primary transition-all hover:scale-125 transform"
             >
               <Mail className="w-6 h-6" />
