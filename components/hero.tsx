@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 
 export function Hero() {
   const [displayText, setDisplayText] = useState("")
-  const fullText = "INSERT COIN TO CONTINUE"
+  const fullText = "GENERATING KNOWLEDGE FROM CODE AND DATA..."
 
   useEffect(() => {
     let index = 0
@@ -73,8 +73,10 @@ export function Hero() {
           <div className="space-y-6 animate__animated animate__fadeIn">
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight text-balance leading-tight">
               JOHN ANDREW <span className="text-primary neon-text block mt-2">BORABO</span>
+              
             </h1>
-            <p className="text-sm sm:text-base md:text-xl text-secondary uppercase tracking-wide">▸ FULL STACK DEV ◂</p>
+            <p className="text-sm sm:text-base md:text-xl text-secondary uppercase tracking-wide">▸ AI DEV & CS RESEARCHER ◂
+            </p>
           </div>
 
           <div className="arcade-card p-6 text-xs sm:text-sm text-primary min-h-[80px] flex items-center">
@@ -100,7 +102,7 @@ export function Hero() {
               className="border-2 border-secondary text-secondary hover:bg-secondary hover:text-background uppercase text-xs sm:text-sm transition-all bg-transparent"
             >
               <Zap className="w-4 h-4 mr-2" />
-              Power Up
+              Contact Me
             </Button>
           </div>
 
