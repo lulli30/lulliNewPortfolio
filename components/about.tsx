@@ -6,8 +6,17 @@ import { useState } from "react"
 export function About() {
   const [activeTech, setActiveTech] = useState<string | null>(null)
 
-  const technologies = ["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "TailwindCSS", "PostgreSQL", "Git"]
-
+  const technologies = [
+    "Java",
+    "Python",
+    "JavaScript",
+    "React",
+    "Next.js",
+    "Android Studio",
+    "NLP",
+    "Git"
+  ]
+  
   return (
     <section id="about" className="py-24 px-6 lg:px-8 relative">
       <div className="absolute inset-0 retro-grid opacity-30 pointer-events-none" />
@@ -24,13 +33,16 @@ export function About() {
 
           <div className="space-y-6 animate__animated animate__fadeInRight">
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              LEVEL 99 DEVELOPER SPECIALIZING IN CRAFTING PIXEL-PERFECT USER INTERFACES. ACHIEVED HIGH SCORE IN
-              COMBINING DESIGN WITH ROBUST ENGINEERING. CURRENT QUEST: BUILDING ACCESSIBLE WEB EXPERIENCES.
+              LEVELING UP AS A COMPUTER SCIENCE STUDENT AND AI DEVELOPER WITH A STRONG FOCUS ON
+              NATURAL LANGUAGE PROCESSING, CYBERSECURITY, AND INTELLIGENT APPLICATIONS.
+              I ENJOY TURNING COMPLEX IDEAS AND RESEARCH INTO PRACTICAL, USER-FOCUSED SYSTEMS.
+
             </p>
 
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              CURRENTLY GRINDING AS SENIOR FULL-STACK ENGINEER. MAIN SKILLS: BUILDING SCALABLE WEB APPS, UI COMPONENT
-              MASTERY, AND ACCESSIBILITY STANDARDS COMPLIANCE.
+              CURRENT QUEST: BUILDING AI-POWERED TOOLS AND APPLICATIONS — FROM ANDROID APPS THAT
+              HELP STUDENTS LEARN MORE EFFECTIVELY TO RESEARCH PROJECTS EXPLORING HOW GENERATIVE
+              AI CAN IMPROVE INFORMATION SECURITY AND CONTENT UNDERSTANDING.
             </p>
 
             <Card className="arcade-card p-6 animate__animated animate__zoomIn">
