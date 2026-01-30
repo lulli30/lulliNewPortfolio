@@ -2,6 +2,7 @@
 
 import { Card } from "@/components/ui/card"
 import { useState } from "react"
+import Image from "next/image"
 
 export function About() {
   const [activeTech, setActiveTech] = useState<string | null>(null)
@@ -29,17 +30,42 @@ export function About() {
               <h2 className="text-2xl md:text-3xl font-bold uppercase">PLAYER INFO</h2>
             </div>
             <div className="h-1 w-20 bg-primary rounded-sm pixel-border" />
+            <div className="space-y-2 flex flex-col items-center lg:items-start">
+              <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-lg overflow-hidden border-2 border-primary/30 shrink-0">
+                <Image
+                  src="/andrew.png"
+                  alt="Andrew"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 640px) 256px, 288px"
+                />
+              </div>
+              <div className="space-y-1 text-sm text-center lg:text-left">
+                <p className="font-medium uppercase text-primary">
+                  <span className="text-muted-foreground">Name:</span> Andrew
+                </p>
+                <p className="font-medium uppercase text-primary">
+                  <span className="text-muted-foreground">School:</span> National University - Dasmarinas
+                </p>
+                <p className="font-medium uppercase text-primary">
+                  <span className="text-muted-foreground">Year:</span> 4th Year
+                </p>
+                <p className="font-medium uppercase text-primary">
+                  <span className="text-muted-foreground">Course:</span> Computer Science
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="space-y-6 animate__animated animate__fadeInRight">
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed text-justify sm:text-left">
               LEVELING UP AS A COMPUTER SCIENCE STUDENT AND AI DEVELOPER WITH A STRONG FOCUS ON
               NATURAL LANGUAGE PROCESSING, CYBERSECURITY, AND INTELLIGENT APPLICATIONS.
               I ENJOY TURNING COMPLEX IDEAS AND RESEARCH INTO PRACTICAL, USER-FOCUSED SYSTEMS.
 
             </p>
 
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed text-justify sm:text-left">
               CURRENT QUEST: BUILDING AI-POWERED TOOLS AND APPLICATIONS — FROM ANDROID APPS THAT
               HELP STUDENTS LEARN MORE EFFECTIVELY TO RESEARCH PROJECTS EXPLORING HOW GENERATIVE
               AI CAN IMPROVE INFORMATION SECURITY AND CONTENT UNDERSTANDING.
