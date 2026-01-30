@@ -6,36 +6,37 @@ import { useState } from "react"
 
 const experiences = [
   {
-    title: "SENIOR FRONTEND ENGINEER",
-    company: "TECH COMPANY",
-    period: "2023 — PRESENT",
+    title: "AI RESEARCHER & CO-AUTHOR",
+    company: "KST 2026 (INTERNATIONAL CONFERENCE)",
+    period: "ACCEPTED — 2026",
     description:
-      "BUILD AND MAINTAIN CRITICAL COMPONENTS ACROSS THE PLATFORM. COLLABORATE WITH TEAMS TO IMPLEMENT WEB ACCESSIBILITY BEST PRACTICES.",
-    technologies: ["JavaScript", "TypeScript", "React", "Storybook"],
-    link: "https://example.com",
-    level: 5,
+      "CO-AUTHORED AN ACCEPTED RESEARCH PAPER TITLED 'EYSTREAM: REAL-TIME SENTIMENT ANALYSIS AND CHAT FILTERING SYSTEM FOR TIKTOK LIVE STUDIOS.' CONTRIBUTED TO THE DESIGN AND IMPLEMENTATION OF AN NLP-BASED SYSTEM FOR REAL-TIME SENTIMENT ANALYSIS AND CONTENT MODERATION IN LIVE STREAMING ENVIRONMENTS.",
+    technologies: ["Python", "NLP", "Sentiment Analysis", "AI Research"],
+    link: "https://kst.buu.ac.th/2025/accepted-paper.html",
+    level: 1,
   },
   {
-    title: "FULL STACK DEVELOPER",
-    company: "CREATIVE AGENCY",
-    period: "2021 — 2023",
+    title: "HACKATHON PARTICIPANT",
+    company: "ISEAC 2025 HACKATHON",
+    period: "FEB 2025",
     description:
-      "DEVELOPED CLIENT WEBSITES AND WEB APPS. TRANSLATED DESIGNS INTO RESPONSIVE INTERFACES. IMPLEMENTED BACKEND APIS AND DATABASE SOLUTIONS.",
-    technologies: ["React", "Next.js", "Node.js", "PostgreSQL"],
-    link: "https://example.com",
-    level: 4,
+      "COLLABORATED WITH A TEAM TO DESIGN AND BUILD A WORKING SOFTWARE SOLUTION UNDER TIME CONSTRAINTS. APPLIED PROBLEM-SOLVING, RAPID PROTOTYPING, AND TEAM COMMUNICATION SKILLS IN A COMPETITIVE ENVIRONMENT.",
+    technologies: ["JavaScript", "Problem Solving", "Team Collaboration"],
+    link: "https://www.facebook.com/share/p/1C1kupmv8F/",
+    level: 2,
   },
   {
-    title: "FRONTEND DEVELOPER",
-    company: "STARTUP INC",
-    period: "2019 — 2021",
+    title: "FREELANCE WEB & SOFTWARE DEVELOPER",
+    company: "SELF-EMPLOYED",
+    period: "2022 — PRESENT",
     description:
-      "BUILT USER-FACING FEATURES FOR SAAS PLATFORM. FOCUSED ON SMOOTH PERFORMANCE AND CODE QUALITY IMPROVEMENTS.",
-    technologies: ["React", "Redux", "Jest", "CSS"],
-    link: "https://example.com",
+      "DEVELOPED WEBSITES AND SOFTWARE SOLUTIONS FOR CLIENTS AND PERSONAL PROJECTS. BUILT RESPONSIVE USER INTERFACES, IMPLEMENTED APPLICATION LOGIC, AND CONTINUOUSLY LEARNED NEW TOOLS AND FRAMEWORKS THROUGH HANDS-ON PROJECTS.",
+    technologies: ["JavaScript", "React", "Next.js", "Git"],
+    link: "https://github.com/lulli30",
     level: 3,
   },
 ]
+
 
 export function Experience() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
