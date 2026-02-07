@@ -11,24 +11,19 @@ const pressStart = Press_Start_2P({
 })
 
 export const metadata: Metadata = {
-  title: "ARCADE PORTFOLIO - Player 1",
+  title: "John Andrew Borabo | Developer Portfolio",
   description: "Retro arcade-themed developer portfolio with neon effects",
   icons: {
     icon: [
       {
-        url: "/icon-light-32x32.png",
+        url: "/favicon1.ico",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/icon-dark-32x32.png",
+        url: "/favicon1.ico",
         media: "(prefers-color-scheme: dark)",
       },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
     ],
-    apple: "/apple-icon.png",
   },
 }
 

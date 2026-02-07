@@ -16,10 +16,32 @@ export function Contact() {
     email: "",
     message: "",
   })
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
+    setStatus("loading")
+    setErrorMessage("")
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to send message")
+      }
+
+      setStatus("success")
+      setFormData({ name: "", email: "", message: "" })
+    } catch (err) {
+      setStatus("error")
+      setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.")
+    }
   }
 
   return (
@@ -159,13 +181,30 @@ export function Contact() {
                 />
               </div>
 
+              {status === "success" && (
+                <p className="text-sm text-primary font-mono uppercase border-2 border-primary/50 bg-primary/10 p-3 rounded-sm">
+                  Transmission sent! I&apos;ll get back to you soon.
+                </p>
+              )}
+              {status === "error" && (
+                <p className="text-sm text-destructive font-mono uppercase border-2 border-destructive/50 bg-destructive/10 p-3 rounded-sm">
+                  {errorMessage}
+                </p>
+              )}
               <Button
                 type="submit"
-                className="w-full arcade-card border-2 uppercase text-xs sm:text-sm hover:-translate-y-1 transition-transform"
+                disabled={status === "loading"}
+                className="w-full arcade-card border-2 border-primary text-foreground uppercase text-xs sm:text-sm hover:-translate-y-1 transition-transform disabled:opacity-70 disabled:cursor-not-allowed"
                 size="lg"
               >
-                <Send className="w-4 h-4 mr-2" />
-                Send Transmission
+                {status === "loading" ? (
+                  <>Sending...</>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4 mr-2" />
+                    Send Transmission
+                  </>
+                )}
               </Button>
             </form>
           </Card>
