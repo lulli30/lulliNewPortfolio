@@ -73,28 +73,12 @@ export function Hero() {
       className="min-h-screen flex items-center justify-center px-6 lg:px-8 pt-16 relative overflow-hidden retro-grid"
     >
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-20 left-10 text-6xl text-primary/20 animate-float">▲</div>
-        <div
-          className="absolute bottom-40 right-20 text-8xl text-secondary/20 animate-float"
-          style={{ animationDelay: "1s" }}
-        >
-          ●
-        </div>
-        <div
-          className="absolute top-1/2 right-10 text-7xl text-accent/20 animate-float"
-          style={{ animationDelay: "2s" }}
-        >
-          ■
-        </div>
+
       </div>
 
       <div className="max-w-4xl w-full relative z-10">
         <div className="space-y-8">
-          <div className="flex items-center gap-4 mb-4 animate-pulse">
-            <Gamepad2 className="w-8 h-8 text-primary" />
-            <span className="text-xs text-primary uppercase tracking-widest">PLAYER 1 READY</span>
-          </div>
-
+          
           <div className="space-y-6 animate__animated animate__fadeIn">
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight text-balance leading-tight">
               JOHN ANDREW <span className="text-primary neon-text block mt-2">BORABO</span>
@@ -123,11 +107,11 @@ export function Hero() {
             <Button
               size="lg"
               variant="outline"
-              onClick={scrollToContact}
-              className="border-2 border-secondary text-secondary hover:bg-secondary hover:text-background uppercase text-xs sm:text-sm transition-all bg-transparent"
+              onClick={() => window.open('/file/andrew cv.pdf', '_blank')}
+              className="border-2 border-secondary text-secondary hover:bg-secondary hover:text-white uppercase text-xs sm:text-sm transition-all bg-transparent"
             >
               <Zap className="w-4 h-4 mr-2" />
-              Contact Me
+              Download CV
             </Button>
           </div>
 
