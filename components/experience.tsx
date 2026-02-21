@@ -1,8 +1,7 @@
 "use client"
 
-import { Card } from "@/components/ui/card"
-import { ExternalLink, Star } from "lucide-react"
-import { useState } from "react"
+import "../styles/experience.css"
+import { ExternalLink } from "lucide-react"
 
 const experiences = [
   {
@@ -37,73 +36,70 @@ const experiences = [
   },
 ]
 
-
 export function Experience() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-
   return (
-    <section id="experience" className="py-24 px-6 lg:px-8 bg-secondary/10 relative overflow-hidden">
-      <div className="absolute inset-0 retro-grid opacity-20 pointer-events-none" />
+    <section id="experience" className="experience-section retro-grid">
+      <div className="experience-inner">
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="space-y-4 mb-12 animate__animated animate__fadeIn">
-          <div className="flex items-center gap-4">
-            <span className="text-secondary text-2xl">★</span>
-            <h2 className="text-2xl md:text-3xl font-bold uppercase">QUEST LOG</h2>
+        {/* Heading */}
+        <div className="exp-heading">
+          <div className="exp-heading-row">
+            <span className="exp-heading-marker">03.</span>
+            <h2 className="exp-heading-title">QUEST LOG</h2>
           </div>
-          <div className="h-1 w-20 bg-secondary rounded-sm pixel-border" />
+          <div className="exp-heading-line" />
         </div>
 
-        <div className="space-y-6">
+        {/* Timeline */}
+        <div className="exp-timeline">
           {experiences.map((exp, index) => (
-            <Card
-              key={index}
-              className="arcade-card p-6 animate__animated animate__fadeInUp"
-              style={{ animationDelay: `${index * 0.1}s` }}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              <div className="flex flex-col gap-4">
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
+            <div key={index} className="exp-entry">
+
+              {/* Node */}
+              <div className="exp-node">
+                <div className="exp-node-dot">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+              </div>
+
+              {/* Card */}
+              <div className="exp-card">
+                <div className="exp-card-header">
+                  <div className="exp-card-meta">
+                    {/* Level stars */}
+                    <div className="exp-level-row">
                       {Array.from({ length: exp.level }).map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                        <span key={i} className="exp-star">★</span>
                       ))}
-                      <span className="text-xs text-primary uppercase">LVL {exp.level}</span>
+                      <span className="exp-level-badge">LVL {exp.level}</span>
                     </div>
 
-                    <h3 className="text-sm sm:text-base font-semibold text-foreground uppercase mb-1">{exp.title}</h3>
-                    <p className="text-xs sm:text-sm text-secondary font-medium uppercase">{exp.company}</p>
+                    <h3 className="exp-title">{exp.title}</h3>
+                    <p className="exp-company">{exp.company}</p>
                   </div>
+
                   <a
                     href={exp.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`text-muted-foreground hover:text-primary transition-all ${
-                      hoveredIndex === index ? "scale-125" : ""
-                    }`}
+                    className="exp-link"
+                    aria-label="View link"
                   >
-                    <ExternalLink className="w-5 h-5" />
+                    <ExternalLink size={16} />
                   </a>
                 </div>
 
-                <p className="text-xs text-muted-foreground uppercase tracking-wide">{exp.period}</p>
+                <div className="exp-period">{exp.period}</div>
 
-                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed font-mono">{exp.description}</p>
+                <p className="exp-description">{exp.description}</p>
 
-                <div className="flex flex-wrap gap-2 pt-2">
+                <div className="exp-tags">
                   {exp.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 border-2 border-primary/30 bg-primary/10 text-primary rounded-sm text-xs uppercase hover:bg-primary hover:text-background transition-all"
-                    >
-                      {tech}
-                    </span>
+                    <span key={tech} className="exp-tag">{tech}</span>
                   ))}
                 </div>
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       </div>

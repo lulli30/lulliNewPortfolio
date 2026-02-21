@@ -99,9 +99,9 @@ export function Hero() {
 
           <div className="fade-up-2">
             <h1 className="hero-name">
-              ANDREW
+              JOHN ANDREW
               <span className={`hero-name-accent${glitchActive ? " glitch" : ""}`}>
-                LULLI
+                BORABO
               </span>
             </h1>
           </div>

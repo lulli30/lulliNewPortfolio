@@ -5,14 +5,14 @@ import { useState } from "react"
 import Image from "next/image"
 
 const TECHNOLOGIES = [
-  { name: "Java",           icon: "☕" },
-  { name: "Python",         icon: "🐍" },
-  { name: "JavaScript",     icon: "⚡" },
-  { name: "React",          icon: "⚛"  },
-  { name: "Next.js",        icon: "▲"  },
-  { name: "Android Studio", icon: "📱" },
-  { name: "NLP",            icon: "🧠" },
-  { name: "Git",            icon: "🌿" },
+  { name: "Java",           },
+  { name: "Python",         },
+  { name: "JavaScript",     },
+  { name: "React",          },
+  { name: "Next.js",        },
+  { name: "Android Studio", },
+  { name: "NLP",            },
+  { name: "Git",            },
 ]
 
 const STATS = [
@@ -103,14 +103,13 @@ export function About() {
               </div>
 
               <div className="tech-grid">
-                {TECHNOLOGIES.map(({ name, icon }) => (
+                {TECHNOLOGIES.map(({ name }) => (
                   <button
                     key={name}
                     className={`tech-btn${activeTech === name ? " active" : ""}`}
                     onMouseEnter={() => setActiveTech(name)}
                     onMouseLeave={() => setActiveTech(null)}
                   >
-                    <span className="tech-btn-icon">{icon}</span>
                     <span className="tech-btn-name">{name}</span>
                   </button>
                 ))}
