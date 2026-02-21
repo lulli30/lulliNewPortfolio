@@ -1,0 +1,442 @@
+.contact-section {
+  padding: clamp(60px, 10vw, 120px) clamp(16px, 5vw, 48px) clamp(40px, 6vw, 60px);
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in oklch, var(--secondary) 5%, transparent);
+}
+
+.contact-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 7vw, 64px);
+}
+
+/* ── Section heading ── */
+.contact-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.contact-heading-marker {
+  color: var(--accent);
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(10px, 2vw, 14px);
+  letter-spacing: 0.1em;
+}
+
+.contact-heading-title {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(14px, 3vw, 22px);
+  color: var(--foreground);
+  letter-spacing: 0.05em;
+}
+
+.contact-heading-line {
+  height: 1px;
+  width: clamp(60px, 10vw, 100px);
+  background: linear-gradient(90deg, var(--accent), color-mix(in oklch, var(--accent) 0%, transparent));
+  box-shadow: 0 0 8px color-mix(in oklch, var(--accent) 50%, transparent);
+  margin-left: 28px;
+}
+
+/* ── Main grid ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 5vw, 56px);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Left column ── */
+.contact-left {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 28px);
+}
+
+/* Status card */
+.contact-status {
+  background: color-mix(in oklch, var(--card) 65%, transparent);
+  border: 1px solid color-mix(in oklch, var(--primary) 25%, transparent);
+  padding: clamp(16px, 2.5vw, 22px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 0 16px color-mix(in oklch, var(--primary) 6%, transparent);
+}
+
+.contact-status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: oklch(0.75 0.2 150);
+  box-shadow: 0 0 8px oklch(0.75 0.2 150);
+  animation: neon-pulse 1.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.contact-status-label {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(8px, 1.3vw, 10px);
+  color: oklch(0.75 0.2 150);
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 6px color-mix(in oklch, oklch(0.75 0.2 150) 50%, transparent);
+}
+
+.contact-status-text {
+  font-family: "Courier New", monospace;
+  font-size: clamp(11px, 1.7vw, 13px);
+  color: var(--muted-foreground);
+  line-height: 1.75;
+}
+
+/* Social links */
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-link-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: clamp(12px, 2vw, 16px);
+  background: color-mix(in oklch, var(--card) 60%, transparent);
+  border: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+  text-decoration: none;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-link-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--link-color, var(--primary));
+  box-shadow: 0 0 8px var(--link-color, var(--primary));
+  transform: scaleY(0);
+  transition: transform 0.2s;
+}
+
+.contact-link-card:hover {
+  border-color: var(--link-color, var(--primary));
+  background: color-mix(in oklch, var(--card) 80%, transparent);
+  box-shadow: 0 0 16px color-mix(in oklch, var(--link-color, var(--primary)) 10%, transparent);
+  transform: translateX(4px);
+}
+
+.contact-link-card:hover::before {
+  transform: scaleY(1);
+}
+
+.contact-link-icon {
+  width: clamp(32px, 4vw, 38px);
+  height: clamp(32px, 4vw, 38px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--link-color, var(--primary));
+  background: color-mix(in oklch, var(--link-color, var(--primary)) 10%, transparent);
+  color: var(--link-color, var(--primary));
+  flex-shrink: 0;
+  transition: box-shadow 0.2s;
+}
+
+.contact-link-card:hover .contact-link-icon {
+  box-shadow: 0 0 12px color-mix(in oklch, var(--link-color, var(--primary)) 40%, transparent);
+}
+
+.contact-link-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.contact-link-type {
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  color: var(--muted-foreground);
+  letter-spacing: 0.18em;
+}
+
+.contact-link-value {
+  font-family: "Courier New", monospace;
+  font-size: clamp(10px, 1.6vw, 12px);
+  color: var(--foreground);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s;
+}
+
+.contact-link-card:hover .contact-link-value {
+  color: var(--link-color, var(--primary));
+}
+
+.contact-link-arrow {
+  margin-left: auto;
+  font-family: "Press Start 2P", monospace;
+  font-size: 8px;
+  color: var(--muted-foreground);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.contact-link-card:hover .contact-link-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--link-color, var(--primary));
+}
+
+/* ── Right: form ── */
+.contact-form-card {
+  background: color-mix(in oklch, var(--card) 65%, transparent);
+  border: 1px solid color-mix(in oklch, var(--primary) 25%, transparent);
+  padding: clamp(20px, 3.5vw, 36px);
+  box-shadow: 0 0 20px color-mix(in oklch, var(--primary) 7%, transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Scanline */
+.contact-form-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.03) 3px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+.contact-form-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: clamp(20px, 3vw, 28px);
+  padding-bottom: clamp(14px, 2vw, 18px);
+  border-bottom: 1px solid color-mix(in oklch, var(--border) 50%, transparent);
+}
+
+.contact-form-header-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 6px var(--primary);
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+.contact-form-title {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(9px, 1.5vw, 11px);
+  color: var(--foreground);
+  letter-spacing: 0.1em;
+}
+
+/* Form fields */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.5vw, 22px);
+  position: relative;
+  z-index: 1;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-label {
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  color: var(--primary);
+  letter-spacing: 0.18em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.contact-label::before {
+  content: '▸';
+  opacity: 0.6;
+}
+
+.contact-input,
+.contact-textarea {
+  font-family: "Courier New", monospace;
+  font-size: clamp(11px, 1.7vw, 13px);
+  color: var(--foreground);
+  background: color-mix(in oklch, var(--background) 70%, transparent);
+  border: 1px solid color-mix(in oklch, var(--primary) 25%, transparent);
+  padding: clamp(10px, 1.5vw, 13px) clamp(12px, 1.8vw, 16px);
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.03em;
+  box-sizing: border-box;
+}
+
+.contact-input::placeholder,
+.contact-textarea::placeholder {
+  color: var(--muted-foreground);
+  opacity: 0.5;
+  font-size: 0.9em;
+}
+
+.contact-input:focus,
+.contact-textarea:focus {
+  border-color: color-mix(in oklch, var(--primary) 60%, transparent);
+  box-shadow:
+    0 0 12px color-mix(in oklch, var(--primary) 12%, transparent),
+    inset 0 0 8px color-mix(in oklch, var(--primary) 4%, transparent);
+}
+
+.contact-textarea {
+  resize: none;
+  min-height: clamp(120px, 18vw, 160px);
+  line-height: 1.7;
+}
+
+/* Status messages */
+.contact-msg {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(7px, 1.2vw, 8px);
+  letter-spacing: 0.1em;
+  padding: 12px 14px;
+  line-height: 1.6;
+  border: 1px solid;
+}
+
+.contact-msg.success {
+  color: oklch(0.75 0.2 150);
+  border-color: color-mix(in oklch, oklch(0.75 0.2 150) 40%, transparent);
+  background: color-mix(in oklch, oklch(0.75 0.2 150) 7%, transparent);
+  text-shadow: 0 0 6px color-mix(in oklch, oklch(0.75 0.2 150) 40%, transparent);
+}
+
+.contact-msg.error {
+  color: var(--destructive);
+  border-color: color-mix(in oklch, var(--destructive) 40%, transparent);
+  background: color-mix(in oklch, var(--destructive) 7%, transparent);
+}
+
+/* Submit button */
+.contact-submit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(8px, 1.3vw, 10px);
+  letter-spacing: 0.12em;
+  padding: clamp(13px, 2vw, 16px);
+  background: color-mix(in oklch, var(--primary) 10%, transparent);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow:
+    0 0 12px color-mix(in oklch, var(--primary) 15%, transparent),
+    inset 0 0 12px color-mix(in oklch, var(--primary) 5%, transparent);
+}
+
+.contact-submit:hover:not(:disabled) {
+  background: color-mix(in oklch, var(--primary) 18%, transparent);
+  box-shadow:
+    0 0 24px color-mix(in oklch, var(--primary) 35%, transparent),
+    inset 0 0 20px color-mix(in oklch, var(--primary) 10%, transparent);
+  color: var(--foreground);
+  transform: translateY(-2px);
+}
+
+.contact-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.contact-submit-loader {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--primary);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Footer ── */
+.contact-footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: clamp(24px, 4vw, 40px);
+  border-top: 1px solid color-mix(in oklch, var(--primary) 20%, transparent);
+  position: relative;
+  z-index: 10;
+}
+
+.contact-footer-text {
+  font-family: "Courier New", monospace;
+  font-size: clamp(9px, 1.4vw, 11px);
+  color: var(--muted-foreground);
+  letter-spacing: 0.1em;
+  text-align: center;
+  opacity: 0.6;
+}
+
+.contact-footer-text span {
+  color: var(--primary);
+  opacity: 1;
+}
+
+/* ── Entrance animations ── */
+@keyframes contactLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes contactRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.contact-left  { animation: contactLeft  0.7s ease forwards; }
+.contact-form-card { animation: contactRight 0.7s ease 0.15s forwards; opacity: 0; }
