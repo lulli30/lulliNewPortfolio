@@ -28,7 +28,7 @@
 }
 
 .proj-heading-marker {
-  color: var(--accent);
+  color: var(--secondary);
   font-family: "Press Start 2P", monospace;
   font-size: clamp(10px, 2vw, 14px);
   letter-spacing: 0.1em;
@@ -44,7 +44,7 @@
 .proj-heading-line {
   height: 1px;
   width: clamp(60px, 10vw, 100px);
-  background: linear-gradient(90deg, var(--accent), color-mix(in oklch, var(--accent) 0%, transparent));
+  background: linear-gradient(90deg, var(--secondary), color-mix(in oklch, var(--accent) 0%, transparent));
   box-shadow: 0 0 8px color-mix(in oklch, var(--accent) 50%, transparent);
   margin-left: 28px;
 }
@@ -172,7 +172,7 @@
   backdrop-filter: blur(4px);
   font-family: "Press Start 2P", monospace;
   font-size: 7px;
-  color: var(--accent);
+  color: var(--secondary);
   letter-spacing: 0.2em;
   text-align: center;
   transform: translateY(100%);
@@ -266,15 +266,15 @@
 }
 
 .proj-btn-demo {
-  background: color-mix(in oklch, var(--accent) 10%, transparent);
-  border-color: color-mix(in oklch, var(--accent) 45%, transparent);
-  color: var(--accent);
+  background: color-mix(in oklch, var(--secondary) 10%, transparent);
+  border-color: color-mix(in oklch, var(--secondary) 45%, transparent);
+  color: var(--secondary);
 }
 
 .proj-btn-demo:hover {
-  background: color-mix(in oklch, var(--accent) 18%, transparent);
-  border-color: var(--accent);
-  box-shadow: 0 0 10px color-mix(in oklch, var(--accent) 25%, transparent);
+  background: color-mix(in oklch, var(--secondary) 18%, transparent);
+  border-color: var(--secondary);
+  box-shadow: 0 0 10px color-mix(in oklch, var(--secondary) 25%, transparent);
   color: var(--foreground);
   transform: translateY(-1px);
 }

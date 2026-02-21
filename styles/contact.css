@@ -29,7 +29,7 @@
 }
 
 .contact-heading-marker {
-  color: var(--accent);
+  color: var(--secondary);
   font-family: "Press Start 2P", monospace;
   font-size: clamp(10px, 2vw, 14px);
   letter-spacing: 0.1em;
@@ -45,8 +45,8 @@
 .contact-heading-line {
   height: 1px;
   width: clamp(60px, 10vw, 100px);
-  background: linear-gradient(90deg, var(--accent), color-mix(in oklch, var(--accent) 0%, transparent));
-  box-shadow: 0 0 8px color-mix(in oklch, var(--accent) 50%, transparent);
+  background: linear-gradient(90deg, var(--secondary), color-mix(in oklch, var(--secondary) 0%, transparent));
+  box-shadow: 0 0 8px color-mix(in oklch, var(--secondary) 50%, transparent);
   margin-left: 28px;
 }
 
