@@ -171,7 +171,7 @@ export function Hero() {
           <div className="fade-up-6">
             <div className="social-row">
               <a 
-                href="https://github.com" 
+                href="https://github.com/lulli30" 
                 className="social-link"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -179,18 +179,12 @@ export function Hero() {
                 <Github className="w-5 h-5" />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/in/john-andrew-borabo-3533b3255/" 
                 className="social-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Linkedin className="w-5 h-5" />
-              </a>
-              <a 
-                href="mailto:andrew@example.com" 
-                className="social-link"
-              >
-                <Mail className="w-5 h-5" />
               </a>
             </div>
           </div>
