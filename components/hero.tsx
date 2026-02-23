@@ -90,12 +90,6 @@ export function Hero() {
         <div className="corner-br" />
 
         <div className="hero-content">
-          <div className="fade-up-1">
-            <div className="hero-badge">
-              <Zap className="w-4 h-4" />
-              <span>SYSTEM ONLINE</span>
-            </div>
-          </div>
 
           <div className="fade-up-2">
             <h1 className="hero-name">
@@ -139,10 +133,17 @@ export function Hero() {
               <Button 
                 variant="outline" 
                 className="btn-secondary"
-                onClick={() => scrollTo("contact")}
+                onClick={() => {
+                  const link = document.createElement('a')
+                  link.href = '/resume.pdf'
+                  link.download = 'John_Andrew_Borabo_Resume.pdf'
+                  document.body.appendChild(link)
+                  link.click()
+                  document.body.removeChild(link)
+                }}
               >
                 <Linkedin className="w-4 h-4" />
-                GET IN TOUCH
+                DOWNLOAD CV
               </Button>
             </div>
           </div>

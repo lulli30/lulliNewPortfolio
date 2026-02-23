@@ -62,7 +62,7 @@ export function Contact() {
         {/* Heading */}
         <div className="contact-heading">
           <div className="contact-heading-row">
-            <span className="contact-heading-marker">05.</span>
+            <span className="contact-heading-marker">04.</span>
             <h2 className="contact-heading-title">CONNECT</h2>
           </div>
           <div className="contact-heading-line" />

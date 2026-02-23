@@ -35,7 +35,6 @@ const experiences = [
     level: 3,
   },
 ]
-
 export function Experience() {
   return (
     <section id="experience" className="experience-section retro-grid">
@@ -44,7 +43,7 @@ export function Experience() {
         {/* Heading */}
         <div className="exp-heading">
           <div className="exp-heading-row">
-            <span className="exp-heading-marker">03.</span>
+            <span className="exp-heading-marker">02.</span>
             <h2 className="exp-heading-title">QUEST LOG</h2>
           </div>
           <div className="exp-heading-line" />

@@ -16,7 +16,7 @@ const TECHNOLOGIES = [
 ]
 
 const STATS = [
-  { label: "CLASS",  value: "CS STUDENT"    },
+  { label: "PROGRAM",  value: "CS STUDENT"    },
   { label: "SCHOOL", value: "NU DASMARIÑAS" },
   { label: "YEAR",   value: "4TH YEAR"      },
   { label: "STATUS", value: "AVAILABLE"     },
@@ -32,7 +32,7 @@ export function About() {
         {/* Section heading */}
         <div className="about-heading">
           <div className="about-heading-row">
-            <span className="about-heading-marker">02.</span>
+            <span className="about-heading-marker">01.</span>
             <h2 className="about-heading-title">PLAYER INFO</h2>
           </div>
           <div className="about-heading-line" />
