@@ -72,22 +72,6 @@ export function Hero() {
       id="hero"
       className="min-h-screen flex items-center justify-center px-6 lg:px-8 pt-16 relative overflow-hidden retro-grid"
     >
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-20 left-10 text-6xl text-primary/20 animate-float">▲</div>
-        <div
-          className="absolute bottom-40 right-20 text-8xl text-secondary/20 animate-float"
-          style={{ animationDelay: "1s" }}
-        >
-          ●
-        </div>
-        <div
-          className="absolute top-1/2 right-10 text-7xl text-accent/20 animate-float"
-          style={{ animationDelay: "2s" }}
-        >
-          ■
-        </div>
-      </div>
-
       <div className="max-w-4xl w-full relative z-10">
         <div className="space-y-8">
           <div className="flex items-center gap-4 mb-4 animate-pulse">
