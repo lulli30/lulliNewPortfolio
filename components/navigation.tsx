@@ -1,107 +1,165 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
+import { useState, useEffect, useRef } from "react"
+import "../styles/navigation.css"
+
+const NAV_ITEMS = [
+  { id: "about",      label: "ABOUT" },
+  { id: "experience", label: "EXP"   },
+  { id: "projects",   label: "WORK"  },
+  { id: "contact",    label: "CONTACT" },
+]
 
 export function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [score, setScore] = useState(0)
-  const [activeSection, setActiveSection] = useState<string>("hero")
+  const [isScrolled, setIsScrolled]     = useState(false)
+  const [activeSection, setActiveSection] = useState("hero")
+  const [score, setScore]               = useState(0)
+  const [menuOpen, setMenuOpen]         = useState(false)
+  const [blinkOn, setBlinkOn]           = useState(true)
+  const menuRef = useRef<HTMLDivElement>(null)
 
+  /* ── scroll tracking ── */
   useEffect(() => {
-    const handleScroll = () => {
+    const onScroll = () => {
       setIsScrolled(window.scrollY > 50)
-      
-      // Determine active section based on scroll position
-      const sections = ["hero", "about", "experience", "projects", "contact"]
-      const scrollPosition = window.scrollY + 100 // Offset for nav height
-      
+      const sections = ["hero", ...NAV_ITEMS.map(n => n.id)]
+      const pos = window.scrollY + 120
       for (let i = sections.length - 1; i >= 0; i--) {
-        const element = document.getElementById(sections[i])
-        if (element && element.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i])
-          break
-        }
+        const el = document.getElementById(sections[i])
+        if (el && el.offsetTop <= pos) { setActiveSection(sections[i]); break }
       }
     }
-    window.addEventListener("scroll", handleScroll)
-    handleScroll() // Check on mount
-    return () => window.removeEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
+  /* ── score counter ── */
   useEffect(() => {
-    const interval = setInterval(() => {
-      setScore((prev) => (prev + 100) % 100000)
-    }, 2000)
-    return () => clearInterval(interval)
+    const t = setInterval(() => setScore(p => (p + 137) % 1000000), 1800)
+    return () => clearInterval(t)
   }, [])
 
-  const scrollToSection = (id: string) => {
+  /* ── cursor blink ── */
+  useEffect(() => {
+    const t = setInterval(() => setBlinkOn(p => !p), 530)
+    return () => clearInterval(t)
+  }, [])
+
+  /* ── close menu on outside click ── */
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false)
+      }
+    }
+    if (menuOpen) document.addEventListener("mousedown", handler)
+    return () => document.removeEventListener("mousedown", handler)
+  }, [menuOpen])
+
+  const scrollTo = (id: string) => {
+    console.log('Scrolling to:', id)
     const element = document.getElementById(id)
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      console.log('Found element:', element)
+      // Custom smooth scroll implementation
+      const startPosition = window.pageYOffset
+      const targetPosition = element.offsetTop - 80 // Offset for nav height
+      const distance = targetPosition - startPosition
+      const duration = 800 // Animation duration in ms
+      
+      let start: number | null = null
+      const animation = (currentTime: number) => {
+        if (start === null) start = currentTime
+        const timeElapsed = currentTime - start
+        const run = ease(timeElapsed, startPosition, distance, duration)
+        window.scrollTo(0, run)
+        if (timeElapsed < duration) requestAnimationFrame(animation)
+      }
+      
+      const ease = (t: number, b: number, c: number, d: number) => {
+        t /= d / 2
+        if (t < 1) return c / 2 * t * t + b
+        t--
+        return -c / 2 * (t * (t - 2) - 1) + b
+      }
+      
+      requestAnimationFrame(animation)
+    } else {
+      console.error('Element not found:', id)
     }
+    setMenuOpen(false)
   }
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-sm border-b-2 border-primary pixel-border" : ""
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+    <nav className={`nav-root${isScrolled ? " scrolled" : ""}`} ref={menuRef}>
+      <div className="nav-inner">
+
+        {/* Logo */}
+        <button className="nav-logo" onClick={() => scrollTo("hero")}>
+          <span className="nav-logo-bracket">[</span>
+          lulli
+          <span style={{ color: blinkOn ? "#00ffff" : "transparent", textShadow: "none", transition: "color 0.1s" }}>_</span>
+          <span className="nav-logo-bracket">]</span>
+        </button>
+
+        {/* Desktop nav */}
+        <div className="nav-desktop">
+          <ul className="nav-links">
+            {NAV_ITEMS.slice(0, -1).map(({ id, label }) => (
+              <li key={id}>
+                <button
+                  className={`nav-link${activeSection === id ? " active" : ""}`}
+                  onClick={() => scrollTo(id)}
+                >
+                  {label}
+                </button>
+              </li>
+            ))}
+          </ul>
           <button
-            onClick={() => scrollToSection("hero")}
-            className="text-sm sm:text-base text-primary hover:text-secondary transition-colors neon-text uppercase tracking-wider"
+            className={`nav-cta${activeSection === "contact" ? " active" : ""}`}
+            onClick={() => scrollTo("contact")}
           >
-            ◀ lulli ▶
+            CONTACT
           </button>
-
-          <div className="hidden md:flex items-center gap-6 text-xs">
-            <button
-              onClick={() => scrollToSection("about")}
-              className={`transition-all hover:scale-110 uppercase tracking-wide ${
-                activeSection === "about"
-                  ? "text-primary neon-text"
-                  : "text-muted-foreground hover:text-primary"
-              }`}
-            >
-              ABOUT
-            </button>
-            <button
-              onClick={() => scrollToSection("experience")}
-              className={`transition-all hover:scale-110 uppercase tracking-wide ${
-                activeSection === "experience"
-                  ? "text-primary neon-text"
-                  : "text-muted-foreground hover:text-primary"
-              }`}
-            >
-              EXP
-            </button>
-            <button
-              onClick={() => scrollToSection("projects")}
-              className={`transition-all hover:scale-110 uppercase tracking-wide ${
-                activeSection === "projects"
-                  ? "text-primary neon-text"
-                  : "text-muted-foreground hover:text-primary"
-              }`}
-            >
-              PROJECTS
-            </button>
-            <Button
-              onClick={() => scrollToSection("contact")}
-              size="sm"
-              className={`arcade-card border-2 uppercase text-xs hover:-translate-y-1 text-white ${
-                activeSection === "contact" ? "neon-text" : ""
-              }`}
-            >
-              CONTACT
-            </Button>
-          </div>
-
-          <div className="text-xs text-primary neon-text hidden sm:block">{score.toString().padStart(6, "0")}</div>
         </div>
+
+        {/* Score */}
+        <div className="nav-score">
+          <span className="nav-score-label">SCORE</span>
+          <span className="nav-score-value">{score.toString().padStart(6, "0")}</span>
+        </div>
+
+        {/* Hamburger */}
+        <button
+          className={`nav-hamburger${menuOpen ? " open" : ""}`}
+          onClick={() => setMenuOpen(p => !p)}
+          aria-label="Toggle menu"
+        >
+          <span className="hamburger-line" />
+          <span className="hamburger-line" />
+          <span className="hamburger-line" />
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      <div className={`nav-mobile-menu${menuOpen ? " open" : ""}`}>
+        {NAV_ITEMS.slice(0, -1).map(({ id, label }) => (
+          <button
+            key={id}
+            className={`nav-mobile-link${activeSection === id ? " active" : ""}`}
+            onClick={() => scrollTo(id)}
+          >
+            {label}
+          </button>
+        ))}
+        <button
+          className="nav-mobile-contact"
+          onClick={() => scrollTo("contact")}
+        >
+          ▸ CONTACT ME
+        </button>
       </div>
     </nav>
   )

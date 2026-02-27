@@ -1,0 +1,321 @@
+.experience-section {
+  padding: clamp(60px, 10vw, 120px) clamp(16px, 5vw, 48px);
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in oklch, var(--secondary) 5%, transparent);
+}
+
+.experience-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(36px, 6vw, 60px);
+}
+
+/* ── Section heading ── */
+.exp-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.exp-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.exp-heading-marker {
+  color: var(--secondary);
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(10px, 2vw, 14px);
+  letter-spacing: 0.1em;
+}
+
+.exp-heading-title {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(14px, 3vw, 22px);
+  color: var(--foreground);
+  letter-spacing: 0.05em;
+}
+
+.exp-heading-line {
+  height: 1px;
+  width: clamp(60px, 10vw, 100px);
+  background: linear-gradient(90deg, var(--secondary), color-mix(in oklch, var(--secondary) 0%, transparent));
+  box-shadow: 0 0 8px color-mix(in oklch, var(--secondary) 50%, transparent);
+  margin-left: 28px;
+}
+
+/* ── Timeline ── */
+.exp-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+/* Vertical line */
+.exp-timeline::before {
+  content: '';
+  position: absolute;
+  left: clamp(14px, 2.5vw, 20px);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklch, var(--secondary) 50%, transparent),
+    color-mix(in oklch, var(--primary) 40%, transparent),
+    color-mix(in oklch, var(--primary) 10%, transparent)
+  );
+}
+
+/* ── Entry ── */
+.exp-entry {
+  display: flex;
+  gap: clamp(20px, 4vw, 40px);
+  padding-bottom: clamp(28px, 5vw, 48px);
+  position: relative;
+}
+
+.exp-entry:last-child {
+  padding-bottom: 0;
+}
+
+/* Node on timeline */
+.exp-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.exp-node-dot {
+  width: clamp(28px, 4vw, 40px);
+  height: clamp(28px, 4vw, 40px);
+  background: color-mix(in oklch, var(--card) 80%, transparent);
+  border: 1px solid color-mix(in oklch, var(--secondary) 50%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(7px, 1.2vw, 9px);
+  color: var(--secondary);
+  position: relative;
+  transition: all 0.25s;
+  flex-shrink: 0;
+}
+
+.exp-entry:hover .exp-node-dot {
+  border-color: var(--secondary);
+  background: color-mix(in oklch, var(--secondary) 12%, transparent);
+  box-shadow:
+    0 0 14px color-mix(in oklch, var(--secondary) 35%, transparent),
+    inset 0 0 10px color-mix(in oklch, var(--secondary) 10%, transparent);
+  color: var(--foreground);
+}
+
+/* ── Card ── */
+.exp-card {
+  flex: 1;
+  background: color-mix(in oklch, var(--card) 65%, transparent);
+  border: 1px solid color-mix(in oklch, var(--primary) 20%, transparent);
+  padding: clamp(16px, 2.5vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+/* Arrow pointing to timeline */
+.exp-card::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: clamp(10px, 2vw, 14px);
+  width: 10px;
+  height: 10px;
+  background: color-mix(in oklch, var(--card) 80%, transparent);
+  border-left: 1px solid color-mix(in oklch, var(--primary) 20%, transparent);
+  border-bottom: 1px solid color-mix(in oklch, var(--primary) 20%, transparent);
+  transform: rotate(45deg);
+  transition: border-color 0.25s;
+}
+
+.exp-entry:hover .exp-card {
+  border-color: color-mix(in oklch, var(--primary) 40%, transparent);
+  box-shadow:
+    0 0 20px color-mix(in oklch, var(--primary) 8%, transparent),
+    inset 0 0 20px color-mix(in oklch, var(--primary) 3%, transparent);
+}
+
+.exp-entry:hover .exp-card::before {
+  border-color: color-mix(in oklch, var(--primary) 40%, transparent);
+}
+
+/* Scanline on card */
+.exp-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.03) 3px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+/* Card header row */
+.exp-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.exp-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.exp-level-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.exp-star {
+  color: var(--secondary);
+  font-size: 10px;
+  text-shadow: 0 0 6px color-mix(in oklch, var(--secondary) 60%, transparent);
+}
+
+.exp-level-badge {
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  color: var(--secondary);
+  letter-spacing: 0.15em;
+  padding: 3px 7px;
+  border: 1px solid color-mix(in oklch, var(--secondary) 35%, transparent);
+  background: color-mix(in oklch, var(--secondary) 8%, transparent);
+}
+
+.exp-title {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(8px, 1.5vw, 11px);
+  color: var(--foreground);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+
+.exp-company {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(7px, 1.2vw, 9px);
+  color: var(--secondary);
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 6px color-mix(in oklch, var(--secondary) 40%, transparent);
+}
+
+.exp-link {
+  color: var(--muted-foreground);
+  transition: all 0.2s;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+.exp-link:hover {
+  color: var(--primary);
+  filter: drop-shadow(0 0 6px color-mix(in oklch, var(--primary) 70%, transparent));
+  transform: scale(1.2) translateY(-1px);
+}
+
+/* Period */
+.exp-period {
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  color: var(--muted-foreground);
+  letter-spacing: 0.18em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.exp-period::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: color-mix(in oklch, var(--muted-foreground) 40%, transparent);
+}
+
+/* Description */
+.exp-description {
+  font-family: "Courier New", monospace;
+  font-size: clamp(11px, 1.7vw, 13px);
+  color: var(--muted-foreground);
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: 1;
+}
+
+/* Tech tags */
+.exp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding-top: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.exp-tag {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(6px, 1vw, 7px);
+  letter-spacing: 0.1em;
+  padding: 5px 10px;
+  border: 1px solid color-mix(in oklch, var(--primary) 28%, transparent);
+  background: color-mix(in oklch, var(--primary) 6%, transparent);
+  color: var(--primary);
+  cursor: default;
+  transition: all 0.18s;
+}
+
+.exp-tag:hover {
+  border-color: var(--primary);
+  background: color-mix(in oklch, var(--primary) 14%, transparent);
+  box-shadow: 0 0 8px color-mix(in oklch, var(--primary) 20%, transparent);
+  color: var(--foreground);
+}
+
+/* ── Entrance animations ── */
+@keyframes expFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.exp-entry {
+  opacity: 0;
+  animation: expFadeUp 0.6s ease forwards;
+}
+
+.exp-entry:nth-child(1) { animation-delay: 0.05s; }
+.exp-entry:nth-child(2) { animation-delay: 0.18s; }
+.exp-entry:nth-child(3) { animation-delay: 0.31s; }
+.exp-entry:nth-child(4) { animation-delay: 0.44s; }
+.exp-entry:nth-child(5) { animation-delay: 0.57s; }

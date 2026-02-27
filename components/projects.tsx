@@ -1,9 +1,7 @@
 "use client"
 
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ExternalLink, Github, Sparkles } from "lucide-react"
-import { useState } from "react"
+import "../styles/projects.css"
+import { ExternalLink, Github } from "lucide-react"
 
 const projects = [
   {
@@ -58,107 +56,83 @@ const projects = [
   },
 ]
 
+function difficultyClass(d: string) {
+  if (d === "EASY")   return "easy"
+  if (d === "MEDIUM") return "medium"
+  if (d === "HARD")   return "hard"
+  return "medium"
+}
 
 export function Projects() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
-      case "EASY":
-        return "text-accent border-accent"
-      case "MEDIUM":
-        return "text-secondary border-secondary"
-      case "HARD":
-        return "text-destructive border-destructive"
-      default:
-        return "text-primary border-primary"
-    }
-  }
-
   return (
-    <section id="projects" className="py-24 px-6 lg:px-8 relative overflow-hidden">
-      <div className="absolute inset-0 retro-grid opacity-30 pointer-events-none" />
+    <section id="projects" className="projects-section retro-grid">
+      <div className="projects-inner">
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="space-y-4 mb-12 animate__animated animate__fadeIn">
-          <div className="flex items-center gap-4">
-            <span className="text-accent text-2xl">◆</span>
-            <h2 className="text-2xl md:text-3xl font-bold uppercase">GAME LIBRARY</h2>
+        {/* Heading */}
+        <div className="proj-heading">
+          <div className="proj-heading-row">
+            <span className="proj-heading-marker">03.</span>
+            <h2 className="proj-heading-title">GAME LIBRARY</h2>
           </div>
-          <div className="h-1 w-20 bg-accent rounded-sm pixel-border" />
+          <div className="proj-heading-line" />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Grid */}
+        <div className="proj-grid">
           {projects.map((project, index) => (
-            <Card
-              key={index}
-              className="arcade-card overflow-hidden group animate__animated animate__zoomIn"
-              style={{ animationDelay: `${index * 0.15}s` }}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              <div className="relative aspect-video overflow-hidden bg-secondary/20 border-b-2 border-primary">
+            <div key={index} className="proj-card">
+
+              {/* Thumbnail */}
+              <div className="proj-thumb">
                 <img
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div
-                  className={`absolute top-3 right-3 px-3 py-1 border-2 ${getDifficultyColor(project.difficulty)} bg-background/90 text-xs uppercase font-bold`}
-                >
+                <div className="proj-thumb-overlay">
+                  <span className="proj-thumb-overlay-icon">▶ PRESS START</span>
+                </div>
+                <div className={`proj-badge ${difficultyClass(project.difficulty)}`}>
                   {project.difficulty}
                 </div>
-                {hoveredIndex === index && (
-                  <div className="absolute inset-0 bg-primary/20 flex items-center justify-center animate__animated animate__fadeIn animate__faster">
-                    <Sparkles className="w-12 h-12 text-primary animate-pulse" />
-                  </div>
-                )}
+                <div className="proj-insert">— INSERT COIN —</div>
               </div>
 
-              <div className="p-6 space-y-4">
-                <h3 className="text-sm sm:text-base font-semibold uppercase leading-tight">{project.title}</h3>
+              {/* Body */}
+              <div className="proj-body">
+                <h3 className="proj-title">{project.title}</h3>
 
-                <p className="text-xs text-muted-foreground leading-relaxed font-mono min-h-[60px]">
-                  {project.description}
-                </p>
+                <p className="proj-description">{project.description}</p>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="proj-tags">
                   {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-1 border border-primary/30 bg-primary/10 text-primary rounded-sm text-xs uppercase"
-                    >
-                      {tech}
-                    </span>
+                    <span key={tech} className="proj-tag">{tech}</span>
                   ))}
                 </div>
 
-                <div className="flex gap-3 pt-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    asChild
-                    className="flex-1 border-2 text-xs uppercase hover:scale-105 transition-transform bg-transparent"
+                <div className="proj-actions">
+                  <a
+                    href={project.github || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="proj-btn proj-btn-code"
+                    aria-disabled={!project.github}
                   >
-                    <a href={project.github} target="_blank" rel="noopener noreferrer">
-                      <Github className="w-3 h-3 mr-2" />
-                      Code
-                    </a>
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="default"
-                    asChild
-                    className="flex-1 text-xs uppercase hover:scale-105 transition-transform"
+                    <Github size={10} />
+                    CODE
+                  </a>
+                  <a
+                    href={project.demo || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="proj-btn proj-btn-demo"
+                    aria-disabled={!project.demo}
                   >
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-3 h-3 mr-2" />
-                      Play
-                    </a>
-                  </Button>
+                    <ExternalLink size={10} />
+                    PLAY
+                  </a>
                 </div>
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       </div>

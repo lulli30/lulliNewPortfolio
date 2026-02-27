@@ -1,0 +1,305 @@
+.projects-section {
+  padding: clamp(60px, 10vw, 120px) clamp(16px, 5vw, 48px);
+  position: relative;
+  overflow: hidden;
+}
+
+.projects-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(36px, 6vw, 56px);
+}
+
+/* ── Section heading ── */
+.proj-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.proj-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.proj-heading-marker {
+  color: var(--secondary);
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(10px, 2vw, 14px);
+  letter-spacing: 0.1em;
+}
+
+.proj-heading-title {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(14px, 3vw, 22px);
+  color: var(--foreground);
+  letter-spacing: 0.05em;
+}
+
+.proj-heading-line {
+  height: 1px;
+  width: clamp(60px, 10vw, 100px);
+  background: linear-gradient(90deg, var(--secondary), color-mix(in oklch, var(--accent) 0%, transparent));
+  box-shadow: 0 0 8px color-mix(in oklch, var(--accent) 50%, transparent);
+  margin-left: 28px;
+}
+
+/* ── Grid ── */
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 2.5vw, 24px);
+}
+
+@media (max-width: 900px) {
+  .proj-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .proj-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Card ── */
+.proj-card {
+  background: color-mix(in oklch, var(--card) 70%, transparent);
+  border: 1px solid color-mix(in oklch, var(--primary) 20%, transparent);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  cursor: default;
+}
+
+.proj-card:hover {
+  border-color: color-mix(in oklch, var(--primary) 50%, transparent);
+  box-shadow:
+    0 0 24px color-mix(in oklch, var(--primary) 12%, transparent),
+    inset 0 0 20px color-mix(in oklch, var(--primary) 4%, transparent);
+  transform: translateY(-4px);
+}
+
+/* ── Thumbnail ── */
+.proj-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: color-mix(in oklch, var(--secondary) 10%, transparent);
+  border-bottom: 1px solid color-mix(in oklch, var(--primary) 20%, transparent);
+}
+
+.proj-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease, filter 0.3s;
+  filter: saturate(0.85);
+}
+
+.proj-card:hover .proj-thumb img {
+  transform: scale(1.08);
+  filter: saturate(1.1);
+}
+
+/* Overlay on hover */
+.proj-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in oklch, var(--primary) 20%, transparent);
+  opacity: 0;
+  transition: opacity 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.proj-card:hover .proj-thumb-overlay {
+  opacity: 1;
+}
+
+.proj-thumb-overlay-icon {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(8px, 1.5vw, 11px);
+  color: var(--primary);
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 12px var(--primary);
+  animation: neon-pulse 1.5s ease-in-out infinite;
+}
+
+/* Difficulty badge */
+.proj-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  letter-spacing: 0.12em;
+  padding: 4px 8px;
+  background: color-mix(in oklch, var(--background) 88%, transparent);
+  backdrop-filter: blur(4px);
+  border: 1px solid;
+  z-index: 2;
+}
+
+.proj-badge.easy {
+  color: var(--accent);
+  border-color: color-mix(in oklch, var(--accent) 50%, transparent);
+}
+
+.proj-badge.medium {
+  color: var(--secondary);
+  border-color: color-mix(in oklch, var(--secondary) 50%, transparent);
+}
+
+.proj-badge.hard {
+  color: var(--destructive);
+  border-color: color-mix(in oklch, var(--destructive) 50%, transparent);
+}
+
+/* Insert coin banner (shows on hover at bottom of thumb) */
+.proj-insert {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 6px;
+  background: color-mix(in oklch, var(--background) 85%, transparent);
+  backdrop-filter: blur(4px);
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  color: var(--secondary);
+  letter-spacing: 0.2em;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.25s;
+  z-index: 3;
+  text-shadow: 0 0 8px color-mix(in oklch, var(--accent) 60%, transparent);
+  animation: neon-pulse 1.5s ease-in-out infinite;
+}
+
+.proj-card:hover .proj-insert {
+  transform: translateY(0);
+}
+
+/* ── Card body ── */
+.proj-body {
+  padding: clamp(14px, 2vw, 20px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.proj-title {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(8px, 1.3vw, 10px);
+  color: var(--foreground);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+
+.proj-description {
+  font-family: "Courier New", monospace;
+  font-size: clamp(10px, 1.6vw, 12px);
+  color: var(--muted-foreground);
+  line-height: 1.75;
+  flex: 1;
+}
+
+/* Tags */
+.proj-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.proj-tag {
+  font-family: "Press Start 2P", monospace;
+  font-size: 6px;
+  letter-spacing: 0.1em;
+  padding: 4px 8px;
+  border: 1px solid color-mix(in oklch, var(--primary) 28%, transparent);
+  background: color-mix(in oklch, var(--primary) 6%, transparent);
+  color: var(--primary);
+}
+
+/* Actions */
+.proj-actions {
+  display: flex;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.proj-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(6px, 1vw, 7px);
+  letter-spacing: 0.1em;
+  padding: clamp(8px, 1.2vw, 10px) 8px;
+  cursor: pointer;
+  transition: all 0.18s;
+  text-decoration: none;
+  border: 1px solid;
+}
+
+.proj-btn-code {
+  background: color-mix(in oklch, var(--primary) 7%, transparent);
+  border-color: color-mix(in oklch, var(--primary) 40%, transparent);
+  color: var(--primary);
+}
+
+.proj-btn-code:hover {
+  background: color-mix(in oklch, var(--primary) 15%, transparent);
+  border-color: var(--primary);
+  box-shadow: 0 0 10px color-mix(in oklch, var(--primary) 25%, transparent);
+  color: var(--foreground);
+  transform: translateY(-1px);
+}
+
+.proj-btn-demo {
+  background: color-mix(in oklch, var(--secondary) 10%, transparent);
+  border-color: color-mix(in oklch, var(--secondary) 45%, transparent);
+  color: var(--secondary);
+}
+
+.proj-btn-demo:hover {
+  background: color-mix(in oklch, var(--secondary) 18%, transparent);
+  border-color: var(--secondary);
+  box-shadow: 0 0 10px color-mix(in oklch, var(--secondary) 25%, transparent);
+  color: var(--foreground);
+  transform: translateY(-1px);
+}
+
+/* Disabled state when no link */
+.proj-btn[aria-disabled="true"] {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Entrance animations ── */
+@keyframes projZoomIn {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.proj-card {
+  opacity: 0;
+  animation: projZoomIn 0.55s ease forwards;
+}
+
+.proj-card:nth-child(1) { animation-delay: 0.05s; }
+.proj-card:nth-child(2) { animation-delay: 0.15s; }
+.proj-card:nth-child(3) { animation-delay: 0.25s; }
+.proj-card:nth-child(4) { animation-delay: 0.35s; }
+.proj-card:nth-child(5) { animation-delay: 0.45s; }
+.proj-card:nth-child(6) { animation-delay: 0.55s; }

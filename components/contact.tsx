@@ -1,21 +1,36 @@
 "use client"
 
+import "../styles/contact.css"
 import type React from "react"
-
 import { useState } from "react"
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Mail, Linkedin, Github, Send, Wifi } from "lucide-react"
+import { Mail, Linkedin, Github, Send } from "lucide-react"
+
+const SOCIAL_LINKS = [
+  {
+    type: "EMAIL",
+    value: "johnandrewborabo@gmail.com",
+    href: "https://mail.google.com/mail/?view=cm&fs=1&to=johnandrewborabo@gmail.com",
+    icon: <Mail size={15} />,
+    color: "var(--primary)",
+  },
+  {
+    type: "LINKEDIN",
+    value: "john-andrew-borabo",
+    href: "https://www.linkedin.com/in/john-andrew-borabo-3533b3255/",
+    icon: <Linkedin size={15} />,
+    color: "var(--secondary)",
+  },
+  {
+    type: "GITHUB",
+    value: "github.com/lulli30",
+    href: "https://github.com/lulli30",
+    icon: <Github size={15} />,
+    color: "var(--accent)",
+  },
+]
 
 export function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  })
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" })
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
 
@@ -31,11 +46,7 @@ export function Contact() {
         body: JSON.stringify(formData),
       })
       const data = await res.json()
-
-      if (!res.ok) {
-        throw new Error(data.error || "Failed to send message")
-      }
-
+      if (!res.ok) throw new Error(data.error || "Failed to send message")
       setStatus("success")
       setFormData({ name: "", email: "", message: "" })
     } catch (err) {
@@ -45,175 +56,142 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24 px-6 lg:px-8 bg-secondary/10 relative overflow-hidden">
-      <div className="absolute inset-0 retro-grid opacity-20 pointer-events-none" />
+    <section id="contact" className="contact-section retro-grid">
+      <div className="contact-inner">
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          <div className="space-y-8 animate__animated animate__fadeInLeft">
-            <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <span className="text-accent text-2xl">▣</span>
-                <h2 className="text-2xl md:text-3xl font-bold uppercase">CONNECT</h2>
-              </div>
-              <div className="h-1 w-20 bg-accent rounded-sm pixel-border" />
-            </div>
+        {/* Heading */}
+        <div className="contact-heading">
+          <div className="contact-heading-row">
+            <span className="contact-heading-marker">04.</span>
+            <h2 className="contact-heading-title">CONNECT</h2>
+          </div>
+          <div className="contact-heading-line" />
+        </div>
 
-            <div className="arcade-card p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <Wifi className="w-5 h-5 text-primary animate-pulse" />
-                <p className="text-xs sm:text-sm text-primary uppercase font-bold">STATUS: ONLINE</p>
+        {/* Grid */}
+        <div className="contact-grid">
+
+          {/* Left */}
+          <div className="contact-left">
+
+            {/* Status */}
+            <div className="contact-status">
+              <div className="contact-status-row">
+                <div className="contact-status-dot" />
+                <span className="contact-status-label">STATUS: ONLINE</span>
               </div>
-              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed font-mono">
-                ALWAYS READY FOR NEW QUESTS, CREATIVE CHALLENGES, OR COLLABORATION OPPORTUNITIES. SEND MESSAGE TO
-                INITIATE CONTACT PROTOCOL.
+              <p className="contact-status-text">
+                ALWAYS READY FOR NEW QUESTS, CREATIVE CHALLENGES, OR COLLABORATION OPPORTUNITIES.
+                SEND A MESSAGE TO INITIATE CONTACT PROTOCOL.
               </p>
             </div>
 
-            <div className="space-y-4">
-              <Card className="arcade-card p-4 hover:scale-105 transition-transform">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-primary/20 border-2 border-primary rounded-sm">
-                    <Mail className="w-5 h-5 text-primary" />
+            {/* Social links */}
+            <div className="contact-links">
+              {SOCIAL_LINKS.map(({ type, value, href, icon, color }) => (
+                <a
+                  key={type}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-link-card"
+                  style={{ "--link-color": color } as React.CSSProperties}
+                >
+                  <div className="contact-link-icon">{icon}</div>
+                  <div className="contact-link-info">
+                    <span className="contact-link-type">{type}</span>
+                    <span className="contact-link-value">{value}</span>
                   </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground uppercase">Email</p>
-                    <a
-                      href="https://mail.google.com/mail/?view=cm&fs=1&to=johnandrewborabo@gmail.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs sm:text-sm text-foreground hover:text-primary transition-colors font-mono"
-                    >
-                      johnandrewborabo@gmail.com
-                    </a>
-                  </div>
-                </div>
-              </Card>
-
-              <Card className="arcade-card p-4 hover:scale-105 transition-transform">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-secondary/20 border-2 border-secondary rounded-sm">
-                    <Linkedin className="w-5 h-5 text-secondary" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground uppercase">LinkedIn</p>
-                    <a
-                      href="https://www.linkedin.com/in/john-andrew-borabo-3533b3255/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs sm:text-sm text-foreground hover:text-secondary transition-colors font-mono"
-                    >
-                      linkedin.com/in/john-andrew-borabo-3533b3255/
-                    </a>
-                  </div>
-                </div>
-              </Card>
-
-              <Card className="arcade-card p-4 hover:scale-105 transition-transform">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-accent/20 border-2 border-accent rounded-sm">
-                    <Github className="w-5 h-5 text-accent" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground uppercase">GitHub</p>
-                    <a
-                      href="https://github.com/lulli30"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs sm:text-sm text-foreground hover:text-accent transition-colors font-mono"
-                    >
-                      github.com/lulli30
-                    </a>
-                  </div>
-                </div>
-              </Card>
+                  <span className="contact-link-arrow">▸</span>
+                </a>
+              ))}
             </div>
           </div>
 
-          <Card className="arcade-card p-8 animate__animated animate__fadeInRight">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="text-primary text-xl">▸</span>
-              <h3 className="text-sm sm:text-base font-bold uppercase">MESSAGE CONSOLE</h3>
+          {/* Right: form */}
+          <div className="contact-form-card">
+            <div className="contact-form-header">
+              <div className="contact-form-header-dot" />
+              <h3 className="contact-form-title">MESSAGE CONSOLE</h3>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="name" className="text-xs uppercase text-primary">
-                  Player Name
-                </Label>
-                <Input
+            <form onSubmit={handleSubmit} className="contact-form">
+              <div className="contact-field">
+                <label htmlFor="name" className="contact-label">PLAYER NAME</label>
+                <input
                   id="name"
+                  className="contact-input"
                   placeholder="ENTER YOUR NAME"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
-                  className="border-2 border-primary/30 bg-background/50 focus:border-primary text-xs sm:text-sm uppercase font-mono"
+                  autoComplete="name"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-xs uppercase text-primary">
-                  Email Address
-                </Label>
-                <Input
+              <div className="contact-field">
+                <label htmlFor="email" className="contact-label">EMAIL ADDRESS</label>
+                <input
                   id="email"
                   type="email"
-                  placeholder="johnandrewborabo@gmail.com"
+                  className="contact-input"
+                  placeholder="your@email.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  className="border-2 border-primary/30 bg-background/50 focus:border-primary text-xs sm:text-sm font-mono"
+                  autoComplete="email"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="message" className="text-xs uppercase text-primary">
-                  Message
-                </Label>
-                <Textarea
+              <div className="contact-field">
+                <label htmlFor="message" className="contact-label">MESSAGE</label>
+                <textarea
                   id="message"
+                  className="contact-textarea"
                   placeholder="DESCRIBE YOUR QUEST..."
-                  rows={6}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
-                  className="border-2 border-primary/30 bg-background/50 focus:border-primary text-xs sm:text-sm font-mono resize-none"
                 />
               </div>
 
               {status === "success" && (
-                <p className="text-sm text-primary font-mono uppercase border-2 border-primary/50 bg-primary/10 p-3 rounded-sm">
-                  Transmission sent! I&apos;ll get back to you soon.
-                </p>
+                <div className="contact-msg success">
+                  ✓ TRANSMISSION SENT! I'LL GET BACK TO YOU SOON.
+                </div>
               )}
               {status === "error" && (
-                <p className="text-sm text-destructive font-mono uppercase border-2 border-destructive/50 bg-destructive/10 p-3 rounded-sm">
-                  {errorMessage}
-                </p>
+                <div className="contact-msg error">
+                  ✕ {errorMessage}
+                </div>
               )}
-              <Button
+
+              <button
                 type="submit"
+                className="contact-submit"
                 disabled={status === "loading"}
-                className="w-full arcade-card border-2 border-primary text-foreground uppercase text-xs sm:text-sm hover:-translate-y-1 transition-transform disabled:opacity-70 disabled:cursor-not-allowed"
-                size="lg"
               >
                 {status === "loading" ? (
-                  <>Sending...</>
+                  <>
+                    <span className="contact-submit-loader" />
+                    SENDING...
+                  </>
                 ) : (
                   <>
-                    <Send className="w-4 h-4 mr-2" />
-                    Send Transmission
+                    <Send size={13} />
+                    SEND TRANSMISSION
                   </>
                 )}
-              </Button>
+              </button>
             </form>
-          </Card>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto mt-24 pt-8 border-t-2 border-primary/30 relative z-10">
-        <p className="text-center text-muted-foreground text-xs uppercase tracking-wider font-mono">
-          © 2025 John Andrew Borabo // BUILT WITH NEXT.JS + TAILWINDCSS // GAME OVER? PRESS START
+      {/* Footer */}
+      <div className="contact-footer">
+        <p className="contact-footer-text">
+          Developed by <span>JOHN ANDREW BORABO</span> // © 2025 
         </p>
       </div>
     </section>
