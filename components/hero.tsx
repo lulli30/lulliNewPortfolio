@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Mail, Zap, Trophy, Gamepad2 } from "lucide-react"
+import { Github, Linkedin, Mail, Zap, Trophy } from "lucide-react"
 import { useEffect, useState, useRef } from "react"
 import "../styles/hero.css"
 
@@ -90,6 +90,7 @@ export function Hero() {
         <div className="corner-br" />
 
         <div className="hero-content">
+
           <div className="fade-up-2">
             <h1 className="hero-name">
               JOHN ANDREW
@@ -101,7 +102,6 @@ export function Hero() {
 
           <div className="fade-up-3">
             <div className="hero-subtitle">
-              <Trophy className="w-4 h-4" />
               <span>CS STUDENT • AI ENTHUSIAST • DEVELOPER</span>
             </div>
           </div>
@@ -126,16 +126,23 @@ export function Hero() {
                 className="btn-primary"
                 onClick={() => scrollTo("projects")}
               >
-                <Trophy className="w-4 h-4" />
+                <Mail className="w-4 h-4" />
                 VIEW PROJECTS
               </Button>
               <Button 
                 variant="outline" 
                 className="btn-secondary"
-                onClick={() => scrollTo("contact")}
+                onClick={() => {
+                  const link = document.createElement('a')
+                  link.href = '/resume.pdf'
+                  link.download = 'John_Andrew_Borabo_Resume.pdf'
+                  document.body.appendChild(link)
+                  link.click()
+                  document.body.removeChild(link)
+                }}
               >
-                <Zap className="w-4 h-4" />
-                Contact Me
+                <Linkedin className="w-4 h-4" />
+                DOWNLOAD CV
               </Button>
             </div>
           </div>
@@ -177,14 +184,6 @@ export function Hero() {
                 rel="noopener noreferrer"
               >
                 <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=johnandrewborabo@gmail.com"
-                className="social-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Mail className="w-5 h-5" />
               </a>
             </div>
           </div>

@@ -390,6 +390,214 @@
   opacity: 0;
 }
 
+/* ────────────────────────────────────────────
+   APPEND THIS TO THE BOTTOM OF about.css
+   ──────────────────────────────────────────── */
+
+/* ── Certifications section ── */
+.cert-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeInRight 0.7s ease 0.3s forwards;
+  opacity: 0;
+}
+
+.cert-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cert-heading-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 8px color-mix(in oklch, var(--primary) 70%, transparent);
+  animation: neon-pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.cert-heading-title {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(9px, 1.5vw, 11px);
+  color: var(--foreground);
+  letter-spacing: 0.1em;
+}
+
+.cert-heading-count {
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  color: var(--muted-foreground);
+  letter-spacing: 0.12em;
+  margin-left: auto;
+}
+
+/* ── Grid ── */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(10px, 2vw, 16px);
+}
+
+@media (max-width: 900px) {
+  .cert-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .cert-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Individual cert card ── */
+.cert-card {
+  background: color-mix(in oklch, var(--card) 60%, transparent);
+  border: 1px solid color-mix(in oklch, var(--primary) 20%, transparent);
+  padding: clamp(14px, 2vw, 18px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Left accent bar */
+.cert-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--primary);
+  box-shadow: 0 0 8px color-mix(in oklch, var(--primary) 60%, transparent);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.25s;
+}
+
+.cert-card:hover {
+  border-color: color-mix(in oklch, var(--primary) 45%, transparent);
+  box-shadow: 0 0 18px color-mix(in oklch, var(--primary) 10%, transparent);
+  transform: translateY(-2px);
+}
+
+.cert-card:hover::before {
+  transform: scaleY(1);
+}
+
+/* ── Icon variants ── */
+.cert-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* Image icon (local file or URL) */
+.cert-icon-img-wrap {
+  position: relative;
+  width: clamp(32px, 4vw, 40px);
+  height: clamp(32px, 4vw, 40px);
+  flex-shrink: 0;
+  border: 1px solid color-mix(in oklch, var(--primary) 25%, transparent);
+  background: color-mix(in oklch, var(--primary) 5%, transparent);
+  overflow: hidden;
+}
+
+.cert-icon-img {
+  object-fit: contain;
+  padding: 4px;
+}
+
+/* Emoji icon */
+.cert-icon-emoji {
+  font-size: clamp(20px, 3vw, 26px);
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+/* Default symbol (no icon or emoji provided) */
+.cert-icon-default {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(14px, 2vw, 18px);
+  color: var(--primary);
+  text-shadow: 0 0 8px color-mix(in oklch, var(--primary) 60%, transparent);
+  animation: neon-pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+/* ── Text content ── */
+.cert-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.cert-title {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(7px, 1.1vw, 8px);
+  color: var(--foreground);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+
+.cert-issuer {
+  font-family: "Courier New", monospace;
+  font-size: clamp(10px, 1.5vw, 11px);
+  color: var(--primary);
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 6px color-mix(in oklch, var(--primary) 40%, transparent);
+}
+
+/* ── Card bottom ── */
+.cert-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid color-mix(in oklch, var(--border) 40%, transparent);
+}
+
+.cert-date {
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  color: var(--muted-foreground);
+  letter-spacing: 0.15em;
+}
+
+.cert-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+  text-decoration: none;
+  padding: 4px 8px;
+  border: 1px solid color-mix(in oklch, var(--primary) 35%, transparent);
+  background: color-mix(in oklch, var(--primary) 6%, transparent);
+  transition: all 0.18s;
+}
+
+.cert-link:hover {
+  border-color: var(--primary);
+  background: color-mix(in oklch, var(--primary) 14%, transparent);
+  box-shadow: 0 0 8px color-mix(in oklch, var(--primary) 25%, transparent);
+  color: var(--foreground);
+}
+
+.cert-no-link {
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  letter-spacing: 0.12em;
+  color: var(--muted-foreground);
+  opacity: 0.35;
+}
+
 /* ── Entrance animations ── */
 @keyframes fadeInLeft {
   from { opacity: 0; transform: translateX(-20px); }
@@ -403,3 +611,4 @@
 
 .anim-left  { animation: fadeInLeft  0.7s ease forwards; }
 .anim-right { animation: fadeInRight 0.7s ease 0.15s forwards; opacity: 0; }
+
