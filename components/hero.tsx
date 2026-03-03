@@ -8,7 +8,7 @@ import "../styles/hero.css"
 export function Hero() {
   const [displayText, setDisplayText] = useState("")
   const [glitchActive, setGlitchActive] = useState(false)
-  const fullText = "GENERATING KNOWLEDGE FROM CODE AND DATA..."
+  const fullText = "Computer Science Student specializing in Machine Learning"
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   // Typewriter effect
@@ -79,7 +79,36 @@ export function Hero() {
   }, [])
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+    console.log('Scrolling to:', id)
+    const element = document.getElementById(id)
+    if (element) {
+      console.log('Found element:', element)
+      // Custom smooth scroll implementation
+      const startPosition = window.pageYOffset
+      const targetPosition = element.offsetTop - 80
+      const distance = targetPosition - startPosition
+      const duration = 800
+      
+      let start: number | null = null
+      const animation = (currentTime: number) => {
+        if (start === null) start = currentTime
+        const timeElapsed = currentTime - start
+        const run = ease(timeElapsed, startPosition, distance, duration)
+        window.scrollTo(0, run)
+        if (timeElapsed < duration) requestAnimationFrame(animation)
+      }
+      
+      const ease = (t: number, b: number, c: number, d: number) => {
+        t /= d / 2
+        if (t < 1) return c / 2 * t * t + b
+        t--
+        return -c / 2 * (t * (t - 2) - 1) + b
+      }
+      
+      requestAnimationFrame(animation)
+    } else {
+      console.error('Element not found:', id)
+    }
   }
 
   return (
@@ -98,12 +127,6 @@ export function Hero() {
                 BORABO
               </span>
             </h1>
-          </div>
-
-          <div className="fade-up-3">
-            <div className="hero-subtitle">
-              <span>CS STUDENT • AI ENTHUSIAST • DEVELOPER</span>
-            </div>
           </div>
 
           <div className="fade-up-4">
@@ -144,26 +167,6 @@ export function Hero() {
                 <Linkedin className="w-4 h-4" />
                 DOWNLOAD CV
               </Button>
-            </div>
-          </div>
-
-          <div className="fade-up-6">
-            <div className="hero-divider" />
-            <div className="stats-row">
-              <div className="stat-item">
-                <div className="stat-value">4+</div>
-                <div className="stat-label">YEARS</div>
-              </div>
-              <div className="stat-divider" />
-              <div className="stat-item">
-                <div className="stat-value">10+</div>
-                <div className="stat-label">PROJECTS</div>
-              </div>
-              <div className="stat-divider" />
-              <div className="stat-item">
-                <div className="stat-value">AI</div>
-                <div className="stat-label">FOCUS</div>
-              </div>
             </div>
           </div>
 

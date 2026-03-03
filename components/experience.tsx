@@ -44,7 +44,7 @@ export function Experience() {
         <div className="exp-heading">
           <div className="exp-heading-row">
             <span className="exp-heading-marker">02.</span>
-            <h2 className="exp-heading-title">QUEST LOG</h2>
+            <h2 className="exp-heading-title">MY JOURNEY</h2>
           </div>
           <div className="exp-heading-line" />
         </div>

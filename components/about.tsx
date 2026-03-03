@@ -23,18 +23,6 @@ const STATS = [
   { label: "STATUS",  value: "AVAILABLE"     },
 ]
 
-/**
- * CERTIFICATIONS
- * Each cert can have:
- *   - icon: a local image path (e.g. "/certs/google.png") or a URL
- *   - emoji: a fallback emoji string (e.g. "🎓") used when no icon is provided
- * If neither is set, a default "✦" symbol is shown.
- *
- * Examples:
- *   { title: "...", issuer: "Google", icon: "/certs/google.png", ... }
- *   { title: "...", issuer: "Meta",   emoji: "🎓",               ... }
- *   { title: "...", issuer: "AWS",    icon: "https://...",        ... }
- */
 const CERTIFICATIONS = [
   {
     title: "Programming for Intermediate Users Using Python",
@@ -111,7 +99,7 @@ export function About() {
         <div className="about-heading">
           <div className="about-heading-row">
             <span className="about-heading-marker">01.</span>
-            <h2 className="about-heading-title">PLAYER INFO</h2>
+            <h2 className="about-heading-title">ABOUT</h2>
           </div>
           <div className="about-heading-line" />
         </div>

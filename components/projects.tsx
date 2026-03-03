@@ -72,7 +72,7 @@ export function Projects() {
         <div className="proj-heading">
           <div className="proj-heading-row">
             <span className="proj-heading-marker">03.</span>
-            <h2 className="proj-heading-title">GAME LIBRARY</h2>
+            <h2 className="proj-heading-title">PROJECTS</h2>
           </div>
           <div className="proj-heading-line" />
         </div>
