@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import "../styles/navigation.css"
+import "../styles/components/navigation.css"
 
 const NAV_ITEMS = [
   { id: "about",      label: "ABOUT" },

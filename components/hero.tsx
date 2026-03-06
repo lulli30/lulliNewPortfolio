@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Mail, Zap, Trophy } from "lucide-react"
 import { useEffect, useState, useRef } from "react"
-import "../styles/hero.css"
+import "../styles/components/hero.css"
 
 export function Hero() {
   const [displayText, setDisplayText] = useState("")

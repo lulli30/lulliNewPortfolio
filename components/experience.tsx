@@ -1,6 +1,6 @@
 "use client"
 
-import "../styles/experience.css"
+import "../styles/components/experience.css"
 import { ExternalLink } from "lucide-react"
 
 const experiences = [
@@ -12,7 +12,6 @@ const experiences = [
       "CO-AUTHORED AN ACCEPTED RESEARCH PAPER TITLED 'EYSTREAM: REAL-TIME SENTIMENT ANALYSIS AND CHAT FILTERING SYSTEM FOR TIKTOK LIVE STUDIOS.' CONTRIBUTED TO THE DESIGN AND IMPLEMENTATION OF AN NLP-BASED SYSTEM FOR REAL-TIME SENTIMENT ANALYSIS AND CONTENT MODERATION IN LIVE STREAMING ENVIRONMENTS.",
     technologies: ["Python", "NLP", "Sentiment Analysis", "AI Research"],
     link: "https://kst.buu.ac.th/2025/accepted-paper.html",
-    level: 1,
   },
   {
     title: "HACKATHON PARTICIPANT",
@@ -22,7 +21,6 @@ const experiences = [
       "COLLABORATED WITH A TEAM TO DESIGN AND BUILD A WORKING SOFTWARE SOLUTION UNDER TIME CONSTRAINTS. APPLIED PROBLEM-SOLVING, RAPID PROTOTYPING, AND TEAM COMMUNICATION SKILLS IN A COMPETITIVE ENVIRONMENT.",
     technologies: ["JavaScript", "Problem Solving", "Team Collaboration"],
     link: "https://www.facebook.com/share/p/1C1kupmv8F/",
-    level: 2,
   },
   {
     title: "FREELANCE WEB & SOFTWARE DEVELOPER",
@@ -32,7 +30,6 @@ const experiences = [
       "DEVELOPED WEBSITES AND SOFTWARE SOLUTIONS FOR CLIENTS AND PERSONAL PROJECTS. BUILT RESPONSIVE USER INTERFACES, IMPLEMENTED APPLICATION LOGIC, AND CONTINUOUSLY LEARNED NEW TOOLS AND FRAMEWORKS THROUGH HANDS-ON PROJECTS.",
     technologies: ["JavaScript", "React", "Next.js", "Git"],
     link: "https://github.com/lulli30",
-    level: 3,
   },
 ]
 export function Experience() {
@@ -65,14 +62,6 @@ export function Experience() {
               <div className="exp-card">
                 <div className="exp-card-header">
                   <div className="exp-card-meta">
-                    {/* Level stars */}
-                    <div className="exp-level-row">
-                      {Array.from({ length: exp.level }).map((_, i) => (
-                        <span key={i} className="exp-star">★</span>
-                      ))}
-                      <span className="exp-level-badge">LVL {exp.level}</span>
-                    </div>
-
                     <h3 className="exp-title">{exp.title}</h3>
                     <p className="exp-company">{exp.company}</p>
                   </div>

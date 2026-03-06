@@ -1,6 +1,6 @@
 "use client"
 
-import "../styles/contact.css"
+import "../styles/components/contact.css"
 import type React from "react"
 import { useState } from "react"
 import { Mail, Linkedin, Github, Send } from "lucide-react"

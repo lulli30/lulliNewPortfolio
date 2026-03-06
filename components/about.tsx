@@ -1,6 +1,6 @@
 "use client"
 
-import "../styles/about.css"
+import "../styles/components/about.css"
 import { useState } from "react"
 import Image from "next/image"
 import { ExternalLink } from "lucide-react"
@@ -29,42 +29,42 @@ const CERTIFICATIONS = [
     issuer: "DICT",
     date: "Dec 2022",
     credential: "https://www.linkedin.com/in/john-andrew-borabo-3533b3255/details/certifications/1741502797081/single-media-viewer/?profileId=ACoAAD7ihS8BEiX3-iwqg2fcc8QQa6ETuVPC6Ss",
-    icon: "/certs/DICT.jpg",
+    icon: "/assets/certs/DICT.jpg",
   },
   {
     title: "IT Specialist - Software Development",
     issuer: "Certiport, a Pearson VUE business",
     date: "March 2025",
     credential: "https://www.credly.com/badges/933bcf0f-c316-48ee-9c8f-57182d0f9704/public_url",
-    icon: "/certs/ITS-Badges_Software-Development_1200px.png",
+    icon: "/assets/certs/ITS-Badges_Software-Development_1200px.png",
   },
   {
     title: "Programming for Beginners Using Python",
     issuer: "DICT",
     date: "Dec 2022",
     credential: "https://www.linkedin.com/in/john-andrew-borabo-3533b3255/details/certifications/1741502761837/single-media-viewer/?profileId=ACoAAD7ihS8BEiX3-iwqg2fcc8QQa6ETuVPC6Ss",
-    icon: "/certs/DICT.jpg",
+    icon: "/assets/certs/DICT.jpg",
   },
   {
     title: "JavaScript OOP: Mastering Modern Object-Oriented Programming",
     issuer: "Udemy",
     date: "Mar 2025",
     credential: "https://www.udemy.com/certificate/UC-882b177f-4e25-4025-9027-1780c213501d/",
-    icon: "/certs/udemy.png",
+    icon: "/assets/certs/udemy.png",
   },
   {
     title: "Cybersecurity Defense with AI and Gen AI",
     issuer: "Udemy",
     date: "Mar 2025",
     credential: "https://www.udemy.com/certificate/UC-ba10a56a-ca60-4b93-9552-b57faff1539e/",
-    icon: "/certs/udemy.png",
+    icon: "/assets/certs/udemy.png",
   },
   {
     title: "Git & GitHub Bootcamp",
     issuer: "Udemy",
     date: "Apr 2025",
     credential: "https://www.udemy.com/certificate/UC-51da5bd0-fe48-4039-8cc3-f590a7b07959/",
-    icon: "/certs/udemy.png",
+    icon: "/assets/certs/udemy.png",
   }
 ]
 
@@ -115,7 +115,7 @@ export function About() {
               <div className="photo-frame-border">
                 <div className="photo-frame-inner">
                   <Image
-                    src="/andrew.png"
+                    src="/assets/images/andrew.png"
                     alt="Andrew"
                     fill
                     className="object-cover object-top"
