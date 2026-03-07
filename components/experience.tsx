@@ -2,6 +2,7 @@
 
 import "../styles/components/experience.css"
 import { ExternalLink } from "lucide-react"
+import { useEffect, useRef } from "react"
 
 const experiences = [
   {
@@ -32,7 +33,61 @@ const experiences = [
     link: "https://github.com/lulli30",
   },
 ]
+
+// Stagger delay in seconds between each card
+const STAGGER = 0.16
+
 export function Experience() {
+  const timelineRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const entries = Array.from(
+      timelineRef.current?.querySelectorAll<HTMLElement>(".exp-entry") ?? []
+    )
+    if (!entries.length) return
+
+    // Track pending timeouts so we can clear them on re-observe
+    const timers = new Map<HTMLElement, ReturnType<typeof setTimeout>>()
+
+    const observer = new IntersectionObserver(
+      (observed) => {
+        observed.forEach((obs) => {
+          const el = obs.target as HTMLElement
+          const index = entries.indexOf(el)
+
+          // Clear any pending timer for this element
+          if (timers.has(el)) {
+            clearTimeout(timers.get(el)!)
+            timers.delete(el)
+          }
+
+          if (obs.isIntersecting) {
+            // Stagger: each card waits a little longer than the one above
+            const delay = index * STAGGER * 1000
+            const id = setTimeout(() => {
+              el.classList.add("is-visible")
+              el.classList.remove("is-hidden")
+              timers.delete(el)
+            }, delay)
+            timers.set(el, id)
+          } else {
+            // Instantly reset when scrolled back out
+            el.classList.remove("is-visible")
+            el.classList.add("is-hidden")
+          }
+        })
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    )
+
+    entries.forEach((entry) => observer.observe(entry))
+
+    return () => {
+      observer.disconnect()
+      timers.forEach((id) => clearTimeout(id))
+    }
+  }, [])
+
   return (
     <section id="experience" className="experience-section retro-grid">
       <div className="experience-inner">
@@ -47,7 +102,7 @@ export function Experience() {
         </div>
 
         {/* Timeline */}
-        <div className="exp-timeline">
+        <div className="exp-timeline" ref={timelineRef}>
           {experiences.map((exp, index) => (
             <div key={index} className="exp-entry">
 
@@ -60,6 +115,8 @@ export function Experience() {
 
               {/* Card */}
               <div className="exp-card">
+                <div className="scanlines" />
+
                 <div className="exp-card-header">
                   <div className="exp-card-meta">
                     <h3 className="exp-title">{exp.title}</h3>
