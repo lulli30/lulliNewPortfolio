@@ -1,3 +1,8 @@
+/* ═══════════════════════════════════════════════
+   CONTACT SECTION
+   Retro-game aesthetic, optimized & accessible
+═══════════════════════════════════════════════ */
+
 .contact-section {
   padding: clamp(60px, 10vw, 120px) clamp(16px, 5vw, 48px) clamp(40px, 6vw, 60px);
   position: relative;
@@ -13,6 +18,34 @@
   display: flex;
   flex-direction: column;
   gap: clamp(40px, 7vw, 64px);
+}
+
+/* ── Scroll-triggered entrance ─────────────── */
+/* Default: hidden. JS adds .is-visible to trigger. */
+.contact-left,
+.contact-form-card {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.contact-left {
+  transform: translateX(-20px);
+}
+
+.contact-section.is-visible .contact-left {
+  animation: contactLeft 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+}
+
+.contact-section.is-visible .contact-form-card {
+  animation: contactRight 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+}
+
+@keyframes contactLeft {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes contactRight {
+  to { opacity: 1; transform: translateX(0); }
 }
 
 /* ── Section heading ── */
@@ -45,7 +78,7 @@
 .contact-heading-line {
   height: 1px;
   width: clamp(60px, 10vw, 100px);
-  background: linear-gradient(90deg, var(--secondary), color-mix(in oklch, var(--secondary) 0%, transparent));
+  background: linear-gradient(90deg, var(--secondary), transparent);
   box-shadow: 0 0 8px color-mix(in oklch, var(--secondary) 50%, transparent);
   margin-left: 28px;
 }
@@ -58,10 +91,6 @@
   align-items: start;
 }
 
-@media (max-width: 768px) {
-  .contact-grid { grid-template-columns: 1fr; }
-}
-
 /* ── Left column ── */
 .contact-left {
   display: flex;
@@ -69,7 +98,7 @@
   gap: clamp(20px, 3vw, 28px);
 }
 
-/* Status card */
+/* ── Status card ── */
 .contact-status {
   background: color-mix(in oklch, var(--card) 65%, transparent);
   border: 1px solid color-mix(in oklch, var(--primary) 25%, transparent);
@@ -78,6 +107,25 @@
   flex-direction: column;
   gap: 10px;
   box-shadow: 0 0 16px color-mix(in oklch, var(--primary) 6%, transparent);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated scan line */
+.contact-status::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  animation: statusScan 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes statusScan {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 .contact-status-row {
@@ -92,8 +140,13 @@
   border-radius: 50%;
   background: oklch(0.75 0.2 150);
   box-shadow: 0 0 8px oklch(0.75 0.2 150);
-  animation: neon-pulse 1.5s ease-in-out infinite;
+  animation: neonPulse 1.5s ease-in-out infinite;
   flex-shrink: 0;
+}
+
+@keyframes neonPulse {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 8px oklch(0.75 0.2 150); }
+  50%       { opacity: 0.6; box-shadow: 0 0 16px oklch(0.75 0.2 150); }
 }
 
 .contact-status-label {
@@ -111,7 +164,7 @@
   line-height: 1.75;
 }
 
-/* Social links */
+/* ── Social links ── */
 .contact-links {
   display: flex;
   flex-direction: column;
@@ -126,30 +179,48 @@
   background: color-mix(in oklch, var(--card) 60%, transparent);
   border: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
   text-decoration: none;
-  transition: all 0.2s;
+  border-radius: 6px;
   position: relative;
   overflow: hidden;
+  /* Use will-change only on hover-prone elements */
+  transition:
+    border-color 0.25s,
+    background 0.25s,
+    box-shadow 0.25s,
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Left accent bar */
 .contact-link-card::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0; top: 0; bottom: 0;
   width: 2px;
   background: var(--link-color, var(--primary));
   box-shadow: 0 0 8px var(--link-color, var(--primary));
   transform: scaleY(0);
+  transform-origin: center;
   transition: transform 0.2s;
 }
 
-.contact-link-card:hover {
+.contact-link-card:hover,
+.contact-link-card:focus-visible {
   border-color: var(--link-color, var(--primary));
-  background: color-mix(in oklch, var(--card) 80%, transparent);
-  box-shadow: 0 0 16px color-mix(in oklch, var(--link-color, var(--primary)) 10%, transparent);
-  transform: translateX(4px);
+  background: color-mix(in oklch, var(--card) 85%, transparent);
+  box-shadow:
+    0 0 24px color-mix(in oklch, var(--link-color, var(--primary)) 15%, transparent),
+    inset 0 0 16px color-mix(in oklch, var(--link-color, var(--primary)) 8%, transparent);
+  transform: translateX(6px) translateY(-2px);
+  outline: none;
 }
 
-.contact-link-card:hover::before {
+.contact-link-card:focus-visible {
+  outline: 2px solid var(--link-color, var(--primary));
+  outline-offset: 2px;
+}
+
+.contact-link-card:hover::before,
+.contact-link-card:focus-visible::before {
   transform: scaleY(1);
 }
 
@@ -163,11 +234,16 @@
   background: color-mix(in oklch, var(--link-color, var(--primary)) 10%, transparent);
   color: var(--link-color, var(--primary));
   flex-shrink: 0;
-  transition: box-shadow 0.2s;
+  border-radius: 6px;
+  transition: box-shadow 0.25s, transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.contact-link-card:hover .contact-link-icon {
-  box-shadow: 0 0 12px color-mix(in oklch, var(--link-color, var(--primary)) 40%, transparent);
+.contact-link-card:hover .contact-link-icon,
+.contact-link-card:focus-visible .contact-link-icon {
+  box-shadow:
+    0 0 20px color-mix(in oklch, var(--link-color, var(--primary)) 50%, transparent),
+    inset 0 0 12px color-mix(in oklch, var(--link-color, var(--primary)) 20%, transparent);
+  transform: rotate(5deg) scale(1.05);
 }
 
 .contact-link-info {
@@ -194,7 +270,8 @@
   transition: color 0.2s;
 }
 
-.contact-link-card:hover .contact-link-value {
+.contact-link-card:hover .contact-link-value,
+.contact-link-card:focus-visible .contact-link-value {
   color: var(--link-color, var(--primary));
 }
 
@@ -204,40 +281,44 @@
   font-size: 8px;
   color: var(--muted-foreground);
   opacity: 0;
-  transform: translateX(-4px);
-  transition: all 0.2s;
+  transform: translateX(-6px);
+  transition: opacity 0.25s, transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s;
   flex-shrink: 0;
 }
 
-.contact-link-card:hover .contact-link-arrow {
+.contact-link-card:hover .contact-link-arrow,
+.contact-link-card:focus-visible .contact-link-arrow {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(2px);
   color: var(--link-color, var(--primary));
+  text-shadow: 0 0 8px color-mix(in oklch, var(--link-color, var(--primary)) 50%, transparent);
 }
 
-/* ── Right: form ── */
+/* ── Form card ── */
 .contact-form-card {
   background: color-mix(in oklch, var(--card) 65%, transparent);
   border: 1px solid color-mix(in oklch, var(--primary) 25%, transparent);
   padding: clamp(20px, 3.5vw, 36px);
   box-shadow: 0 0 20px color-mix(in oklch, var(--primary) 7%, transparent);
+  border-radius: 8px;
   position: relative;
   overflow: hidden;
 }
 
-/* Scanline */
+/* CRT scanlines */
 .contact-form-card::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: repeating-linear-gradient(
     0deg,
     transparent,
     transparent 3px,
-    rgba(0, 0, 0, 0.03) 3px,
-    rgba(0, 0, 0, 0.03) 4px
+    rgba(0,0,0,0.03) 3px,
+    rgba(0,0,0,0.03) 4px
   );
   pointer-events: none;
+  z-index: 0;
 }
 
 .contact-form-header {
@@ -246,16 +327,13 @@
   gap: 10px;
   margin-bottom: clamp(20px, 3vw, 28px);
   padding-bottom: clamp(14px, 2vw, 18px);
-  border-bottom: 1px solid color-mix(in oklch, var(--border) 50%, transparent);
+  border-bottom: 1px solid color-mix(in oklch, var(--primary) 20%, transparent);
 }
 
-.contact-form-header-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--primary);
-  box-shadow: 0 0 6px var(--primary);
-  animation: neon-pulse 2s ease-in-out infinite;
+.contact-form-header-icon {
+  color: var(--primary);
+  opacity: 0.8;
+  flex-shrink: 0;
 }
 
 .contact-form-title {
@@ -265,7 +343,7 @@
   letter-spacing: 0.1em;
 }
 
-/* Form fields */
+/* ── Form fields ── */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -287,12 +365,23 @@
   letter-spacing: 0.18em;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  transition: color 0.2s, transform 0.2s;
 }
 
-.contact-label::before {
-  content: '▸';
-  opacity: 0.6;
+.contact-label svg {
+  opacity: 0.7;
+  transition: opacity 0.2s, filter 0.2s;
+}
+
+.contact-field:focus-within .contact-label {
+  color: oklch(0.75 0.2 150);
+  transform: translateY(-1px);
+}
+
+.contact-field:focus-within .contact-label svg {
+  opacity: 1;
+  filter: drop-shadow(0 0 4px currentColor);
 }
 
 .contact-input,
@@ -305,40 +394,112 @@
   padding: clamp(10px, 1.5vw, 13px) clamp(12px, 1.8vw, 16px);
   width: 100%;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.25s,
+    background 0.25s,
+    box-shadow 0.25s,
+    transform 0.2s;
   letter-spacing: 0.03em;
   box-sizing: border-box;
+  border-radius: 4px;
 }
 
 .contact-input::placeholder,
 .contact-textarea::placeholder {
   color: var(--muted-foreground);
-  opacity: 0.5;
+  opacity: 0.45;
   font-size: 0.9em;
 }
 
 .contact-input:focus,
 .contact-textarea:focus {
   border-color: color-mix(in oklch, var(--primary) 60%, transparent);
+  background: color-mix(in oklch, var(--background) 85%, transparent);
   box-shadow:
-    0 0 12px color-mix(in oklch, var(--primary) 12%, transparent),
-    inset 0 0 8px color-mix(in oklch, var(--primary) 4%, transparent);
+    0 0 16px color-mix(in oklch, var(--primary) 15%, transparent),
+    inset 0 0 12px color-mix(in oklch, var(--primary) 6%, transparent),
+    0 0 0 1px color-mix(in oklch, var(--primary) 30%, transparent);
+  transform: translateY(-1px);
+}
+
+/* Error state */
+.contact-input.border-destructive,
+.contact-textarea.border-destructive {
+  border-color: var(--destructive);
+  background: color-mix(in oklch, var(--destructive) 5%, transparent);
+}
+
+.contact-input.border-destructive:focus,
+.contact-textarea.border-destructive:focus {
+  box-shadow:
+    0 0 16px color-mix(in oklch, var(--destructive) 15%, transparent),
+    0 0 0 1px color-mix(in oklch, var(--destructive) 30%, transparent);
 }
 
 .contact-textarea {
-  resize: none;
+  resize: vertical;
   min-height: clamp(120px, 18vw, 160px);
   line-height: 1.7;
 }
 
-/* Status messages */
+.contact-field-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.contact-char-count {
+  font-family: "Courier New", monospace;
+  font-size: clamp(8px, 1.2vw, 10px);
+  color: var(--muted-foreground);
+  opacity: 0.55;
+  transition: color 0.2s, opacity 0.2s;
+  flex-shrink: 0;
+}
+
+.contact-char-count.warning {
+  color: var(--secondary);
+  opacity: 1;
+}
+
+.contact-char-count.error {
+  color: var(--destructive);
+  opacity: 1;
+}
+
+.contact-field-error {
+  font-family: "Courier New", monospace;
+  font-size: clamp(9px, 1.3vw, 11px);
+  color: var(--destructive);
+  opacity: 0.85;
+  animation: errorSlide 0.25s ease-out;
+}
+
+@keyframes errorSlide {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 0.85; transform: translateY(0); }
+}
+
+/* ── Status messages ── */
 .contact-msg {
   font-family: "Press Start 2P", monospace;
   font-size: clamp(7px, 1.2vw, 8px);
   letter-spacing: 0.1em;
   padding: 12px 14px;
-  line-height: 1.6;
+  line-height: 1.7;
   border: 1px solid;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: messageSlide 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes messageSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .contact-msg.success {
@@ -354,49 +515,76 @@
   background: color-mix(in oklch, var(--destructive) 7%, transparent);
 }
 
-/* Submit button */
+/* ── Submit button ── */
 .contact-submit {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-family: "Press Start 2P", monospace;
-  font-size: clamp(8px, 1.3vw, 10px);
-  letter-spacing: 0.12em;
-  padding: clamp(13px, 2vw, 16px);
+  font-family: "Press Start 2P", monospace !important;
+  font-size: clamp(8px, 1.3vw, 10px) !important;
+  letter-spacing: 0.12em !important;
+  padding: clamp(13px, 2vw, 16px) !important;
   background: color-mix(in oklch, var(--primary) 10%, transparent);
   border: 1px solid var(--primary);
   color: var(--primary);
   cursor: pointer;
-  transition: all 0.2s;
+  transition:
+    background 0.25s,
+    box-shadow 0.25s,
+    color 0.2s,
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
   box-shadow:
     0 0 12px color-mix(in oklch, var(--primary) 15%, transparent),
     inset 0 0 12px color-mix(in oklch, var(--primary) 5%, transparent);
+  border-radius: 6px !important;
+  position: relative;
+  overflow: hidden;
 }
 
-.contact-submit:hover:not(:disabled) {
-  background: color-mix(in oklch, var(--primary) 18%, transparent);
+/* Ripple fill */
+.contact-submit::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: color-mix(in oklch, var(--primary) 12%, transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-submit:hover:not(:disabled)::before,
+.contact-submit:focus-visible:not(:disabled)::before {
+  transform: scaleX(1);
+}
+
+.contact-submit:hover:not(:disabled),
+.contact-submit:focus-visible:not(:disabled) {
   box-shadow:
-    0 0 24px color-mix(in oklch, var(--primary) 35%, transparent),
-    inset 0 0 20px color-mix(in oklch, var(--primary) 10%, transparent);
+    0 0 32px color-mix(in oklch, var(--primary) 45%, transparent),
+    inset 0 0 24px color-mix(in oklch, var(--primary) 15%, transparent);
   color: var(--foreground);
   transform: translateY(-2px);
+  border-color: color-mix(in oklch, var(--primary) 80%, transparent);
+  outline: none;
 }
 
 .contact-submit:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  transform: none;
 }
 
 .contact-submit-loader {
   display: inline-block;
   width: 8px;
   height: 8px;
-  border: 1px solid var(--primary);
+  border: 1.5px solid currentColor;
   border-top-color: transparent;
   border-radius: 50%;
-  animation: spin 0.7s linear infinite;
+  animation: spin 0.65s linear infinite;
+  flex-shrink: 0;
 }
 
 @keyframes spin {
@@ -427,16 +615,41 @@
   opacity: 1;
 }
 
-/* ── Entrance animations ── */
-@keyframes contactLeft {
-  from { opacity: 0; transform: translateX(-20px); }
-  to   { opacity: 1; transform: translateX(0); }
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(20px, 4vw, 32px);
+  }
+
+  .contact-link-card:hover {
+    transform: translateX(4px) translateY(-1px);
+  }
+
+  .contact-label {
+    font-size: 6px;
+  }
 }
 
-@keyframes contactRight {
-  from { opacity: 0; transform: translateX(20px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .contact-status::before,
+  .contact-status-dot,
+  .contact-form-header-dot {
+    animation: none;
+  }
 
-.contact-left  { animation: contactLeft  0.7s ease forwards; }
-.contact-form-card { animation: contactRight 0.7s ease 0.15s forwards; opacity: 0; }
+  .contact-section.is-visible .contact-left,
+  .contact-section.is-visible .contact-form-card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .contact-input:focus,
+  .contact-textarea:focus,
+  .contact-link-card:hover,
+  .contact-submit:hover:not(:disabled) {
+    transform: none;
+  }
+}
