@@ -6,6 +6,15 @@ import { useEffect, useRef } from "react"
 
 const experiences = [
   {
+    title: "MACHINE LEARNING ENGINEER INTERN",
+    company: "METROPOLITAN BANK & TRUST CO. (METROBANK)",
+    period: "APR 2026 — JUN 2026",
+    description:
+      "CONDUCTED RESEARCH ON FEATURE ENGINEERING TECHNIQUES TO DETECT FRAUDULENT AND ANOMALOUS TRANSACTIONS. ANALYZED TRANSACTION PATTERNS AND DEVELOPED FEATURE EXTRACTION METHODS TO IMPROVE MODEL PERFORMANCE FOR FINANCIAL FRAUD DETECTION SYSTEMS.",
+    technologies: ["Python", "Machine Learning", "Data Analysis", "Scikit-learn"],
+    link: "https://www.metrobank.com.ph",
+  },
+  {
     title: "AI RESEARCHER & CO-AUTHOR",
     company: "KST 2026 (INTERNATIONAL CONFERENCE)",
     period: "ACCEPTED — 2026",
