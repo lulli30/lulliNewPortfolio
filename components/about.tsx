@@ -17,9 +17,8 @@ const TECHNOLOGIES = [
 ]
 
 const STATS = [
-  { label: "PROGRAM", value: "CS STUDENT"    },
+  { label: "DEGREE", value: "BSCS specialized in Machine Learning"    },
   { label: "SCHOOL",  value: "NU DASMARIÑAS" },
-  { label: "YEAR",    value: "4TH YEAR"      },
   { label: "STATUS",  value: "AVAILABLE"     },
 ]
 

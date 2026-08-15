@@ -1,14 +1,14 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Mail, Zap, Trophy } from "lucide-react"
+import { Download, Github, Linkedin, Mail, Zap, Trophy } from "lucide-react"
 import { useEffect, useState, useRef } from "react"
 import "../styles/components/hero.css"
 
 export function Hero() {
   const [displayText, setDisplayText] = useState("")
   const [glitchActive, setGlitchActive] = useState(false)
-  const fullText = "Computer Science Student specializing in Machine Learning"
+  const fullText = "Computer Science graduate specializing in Machine Learning"
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   // Typewriter effect
@@ -164,7 +164,7 @@ export function Hero() {
                   document.body.removeChild(link)
                 }}
               >
-                <Linkedin className="w-4 h-4" />
+                <Download className="w-4 h-4" />
                 DOWNLOAD CV
               </Button>
             </div>
